@@ -186,6 +186,11 @@
   }
   .card:hover{border-color:var(--line-strong); transform:translateY(-3px)}
   .card:hover::before{width:100%}
+  .card-img{
+    display:block; width:calc(100% + 56px); margin:-28px -28px 20px;
+    aspect-ratio:16/10; object-fit:cover; background:#000;
+    border-bottom:1px solid var(--line);
+  }
   .card .domain{font-family:var(--mono); font-size:.66rem; letter-spacing:.16em;
     text-transform:uppercase; color:var(--amber-deep)}
   .card h3{font-family:var(--display); font-weight:600; font-size:1.32rem;
@@ -373,6 +378,7 @@
       </div>
 
       <div class="card reveal">
+        <img class="card-img" src="img/orbital-propagator.png" alt="3D visualization of ISS, Molniya, and GEO orbits computed by the propagator" loading="lazy">
         <div class="domain">Astrodynamics</div>
         <h3>Two-Body Orbital Propagator</h3>
         <p>A from-scratch propagator that integrates the two-body equations of motion with RK45, including J2 oblateness perturbations. It converts between classical orbital elements and Cartesian state vectors, renders 3D trajectories and ground tracks, and validates nodal regression to within 0.4% of the analytical J2 result across ISS, Molniya, and GEO test orbits.</p>
