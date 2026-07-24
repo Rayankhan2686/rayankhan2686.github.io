@@ -367,6 +367,7 @@
 
     <div class="proj-grid">
       <div class="card reveal">
+        <img class="card-img" src="img/follow-me-drone.jpg" alt="The tracker's YOLOv8n + ByteTrack pipeline locked onto a person, with live distance estimate" loading="lazy">
         <div class="domain">Autonomy · Computer Vision</div>
         <h3>Vision-Based "Follow-Me" Drone Controller</h3>
         <p>A real-time "follow-me" drone controller in Python: YOLOv8n tracking feeds a PID control loop, validated in ArduPilot SITL before touching hardware. A plugin architecture with abstract source/sink interfaces decouples camera, tracking, and control into swappable backends. Hardened against occlusion with focal-length calibration for range estimation, and covered by 32+ unit tests.</p>
@@ -391,6 +392,7 @@
       </div>
 
       <div class="card reveal">
+        <img class="card-img" src="img/pyfea.png" alt="Cantilever beam solved by pyFEA, colored by von Mises stress" loading="lazy">
         <div class="domain">Structures · FEA</div>
         <h3>pyFEA <span class="status">In progress</span></h3>
         <p>A linear-static finite-element solver written from the ground up to demonstrate the method itself, not call a library. It reads a YAML model deck, builds the 6×6 constitutive matrix, assembles Tet4 elements into a global stiffness system, solves for displacement and stress, and exports .vtu fields for ParaView. Element eigenvalue spectra are verified for correct rigid-body and deformation modes.</p>
@@ -403,6 +405,7 @@
       </div>
 
       <div class="card reveal">
+        <img class="card-img" src="img/rocket-launch-simulator.jpg" alt="The Arduino-based launch-abort system breadboard, with LCD readout" loading="lazy">
         <div class="domain">Avionics · Embedded</div>
         <h3>Rocket Launch Safety Simulator</h3>
         <p>An Arduino abort system modeled as a finite-state machine. It monitors launch conditions and drives the vehicle through armed, launch, and abort states with hardware logic — a compact study in safety-critical control flow and embedded decision-making.</p>
