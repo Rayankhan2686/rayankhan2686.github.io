@@ -115,14 +115,85 @@
   .entry-tags{font-style:italic; color:var(--ink-soft); font-size:.92rem; margin-top:.8em}
   .entry-link{font-size:.92rem; display:inline-block; margin-top:.6em}
 
+  .story{margin:14px 0 4px}
+  .story-row{display:flex; gap:14px; padding:7px 0}
+  .story-row + .story-row{border-top:1px solid var(--line)}
+  .story-row dt{
+    flex:0 0 78px; padding-top:.1em; font-weight:700; font-size:.76rem; letter-spacing:.03em;
+    color:var(--ink); font-variant-caps:small-caps; -webkit-font-feature-settings:"smcp" 1; font-feature-settings:"smcp" 1;
+  }
+  .story-row dd{flex:1; font-size:.95rem; color:var(--ink-soft); line-height:1.5}
+  .story-row.result dd{color:var(--ink)}
+
+  .achievements{list-style:none; margin:14px 0 4px; padding:0}
+  .achievements li{
+    position:relative; padding-left:1.15em; margin-bottom:.55em;
+    font-size:.95rem; color:var(--ink-soft); line-height:1.5;
+  }
+  .achievements li:last-child{margin-bottom:0}
+  .achievements li::before{content:"–"; position:absolute; left:0; color:var(--ink-faint)}
+
   .entry-figure{margin:16px 0 20px}
-  .entry-figure img{
+  .entry-figure img, .entry-figure video{
     width:100%; display:block; border:1px solid var(--line);
     filter:saturate(.5) contrast(1.05) brightness(1.02);
   }
   .entry-figure figcaption{
     font-style:italic; font-size:.82rem; color:var(--ink-soft); text-align:center; margin-top:8px;
   }
+
+  .figure-contain{text-align:center}
+  .figure-contain img{
+    width:auto; max-width:100%; height:auto; max-height:280px;
+    margin:0 auto; object-fit:contain;
+  }
+
+  .video-feature{
+    width:100vw; max-width:960px; position:relative; left:50%; transform:translateX(-50%);
+  }
+
+  .img-placeholder{
+    display:none; width:100%; aspect-ratio:16/10; border:1px dashed var(--line);
+    align-items:center; justify-content:center; text-align:center; padding:14px;
+    color:var(--ink-faint); font-style:italic; font-size:.82rem; background:rgba(17,17,17,.02);
+  }
+
+  .entry-carousel{
+    position:relative; margin:16px 0 20px; border:1px solid var(--line);
+    overflow:hidden; background:#000;
+  }
+  .carousel-track{position:relative; aspect-ratio:16/10; cursor:pointer}
+  .carousel-slide{
+    position:absolute; inset:0; opacity:0; visibility:hidden;
+    transition:opacity .35s ease;
+  }
+  .carousel-slide.is-active{opacity:1; visibility:visible}
+  .carousel-slide img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    filter:saturate(.5) contrast(1.05) brightness(1.02);
+  }
+  .carousel-slide .img-placeholder{
+    position:absolute; inset:0; aspect-ratio:auto; border:none;
+  }
+  .carousel-btn{
+    position:absolute; top:50%; transform:translateY(-50%); z-index:2;
+    background:rgba(250,250,248,.88); border:1px solid var(--line); color:var(--ink);
+    width:32px; height:32px; border-radius:50%; font-family:var(--display); font-size:1.15rem;
+    cursor:pointer; display:flex; align-items:center; justify-content:center; line-height:1;
+    padding:0;
+  }
+  .carousel-btn:hover{background:var(--bg); border-color:var(--ink)}
+  .carousel-btn.prev{left:10px}
+  .carousel-btn.next{right:10px}
+  .carousel-dots{
+    position:absolute; bottom:10px; left:0; right:0; z-index:2;
+    display:flex; justify-content:center; gap:7px;
+  }
+  .carousel-dot{
+    width:7px; height:7px; padding:0; border-radius:50%;
+    border:1px solid rgba(250,250,248,.85); background:transparent; cursor:pointer;
+  }
+  .carousel-dot.is-active{background:rgba(250,250,248,.95)}
 
   /* ---------- ABOUT / SKILLS ---------- */
   .skills{margin-top:6px}
@@ -223,7 +294,16 @@
         <span class="entry-time">Oct 2025 – Present</span>
       </div>
       <div class="entry-org">Rutgers University — Low-Reynolds-Number Aerodynamics Lab</div>
-      <p>Built an OpenFOAM/Python CFD pipeline computing lift, drag, and moment coefficients for NACA 0012/2412/4412 airfoils at Re = 2×10⁵. Ran 87+ steady RANS simulations from −4° to 20° angle of attack at 0.5° stall resolution, validated against XFOIL within 4%, and engineered a structured C-mesh blockMesh topology that resolved pseudo-3D artifacts.</p>
+      <figure class="entry-figure figure-contain">
+        <img src="img/cfd-airfoil-pressure.png" alt="ParaView pressure-field render of a NACA 0012 airfoil at 9 degrees angle of attack" loading="lazy">
+        <figcaption>Pressure field around a NACA 0012 airfoil at 9° angle of attack, rendered in ParaView (Re = 2×10⁵).</figcaption>
+      </figure>
+      <ul class="achievements">
+        <li>Built an OpenFOAM/Python pipeline computing aerodynamic coefficients for NACA 0012/2412/4412 airfoils at Re = 2×10⁵, automating meshing through post-processing.</li>
+        <li>Validated 87+ RANS simulations against XFOIL to within 4% across a −4° to 20° angle-of-attack sweep at 0.5° resolution.</li>
+        <li>Traced a 44× lift-coefficient error to meshing artifacts via root-cause analysis; corrected it with a structured blockMesh C-grid topology.</li>
+        <li>Preparing results for an AIAA SciTech publication.</li>
+      </ul>
     </article>
   </section>
 
@@ -233,12 +313,22 @@
 
     <article class="entry">
       <div class="entry-head">
-        <h3>Vision-Based "Follow-Me" Drone Controller</h3>
-        <span class="entry-time">Autonomy · Computer Vision</span>
+        <h3>Strapdown IMU AHRS — Attitude &amp; Heading Reference System</h3>
+        <span class="entry-time">Embedded · Sensor Fusion</span>
       </div>
-      <p>A real-time "follow-me" drone controller in Python: YOLOv8n tracking feeds a PID control loop, validated in ArduPilot SITL before touching hardware. A plugin architecture with abstract source/sink interfaces decouples camera, tracking, and control into swappable backends. Hardened against occlusion with focal-length calibration for range estimation, and covered by 32+ unit tests.</p>
-      <p class="entry-tags">Python, YOLOv8, OpenCV, PID, ArduPilot SITL, pytest</p>
-      <a class="entry-link" href="https://github.com/rayankhan2686" target="_blank">View on GitHub →</a>
+      <figure class="entry-figure">
+        <img src="img/ahrs-demo.png" alt="Strapdown AHRS attitude estimate demo" loading="lazy" class="fallback-img">
+        <div class="img-placeholder">Image coming soon</div>
+        <figcaption>Attitude estimate output</figcaption>
+      </figure>
+      <dl class="story">
+        <div class="story-row"><dt>Problem</dt><dd>Estimate accurate 3D attitude and heading from noisy, drifting IMU sensors — raw gyro integration alone drifts hundreds of degrees over time.</dd></div>
+        <div class="story-row"><dt>Approach</dt><dd>An ESP32 Feather V2 with an ICM-20948 9-DoF IMU streams raw sensor data to a Python host running complementary and Madgwick fusion filters implemented from first principles against a custom quaternion convention; architected as "dumb firmware, smart host" with a transport-agnostic parser.</dd></div>
+        <div class="story-row result"><dt>Results</dt><dd>The complementary filter holds 0.245° RMS attitude error over a 10-minute run versus ~300° of raw gyro-only drift — roughly a 1200× improvement — with Madgwick adding further gains near gimbal lock; validated by a 19/19 passing test suite.</dd></div>
+        <div class="story-row"><dt>Next</dt><dd>Not specified yet — let me know what's planned.</dd></div>
+      </dl>
+      <p class="entry-tags">C++, Python, ESP32, embedded</p>
+      <a class="entry-link" href="https://github.com/rayankhan2686/strapdown-ahrs" target="_blank">View on GitHub →</a>
     </article>
 
     <article class="entry">
@@ -250,7 +340,12 @@
         <img src="img/orbital-propagator.png" alt="3D visualization of ISS, Molniya, and GEO orbits computed by the propagator" loading="lazy">
         <figcaption>ISS, Molniya, and GEO orbits computed by the propagator.</figcaption>
       </figure>
-      <p>A from-scratch propagator that integrates the two-body equations of motion with RK45, including J2 oblateness perturbations. It converts between classical orbital elements and Cartesian state vectors, renders 3D trajectories and ground tracks, and validates nodal regression to within 0.4% of the analytical J2 result across ISS, Molniya, and GEO test orbits.</p>
+      <dl class="story">
+        <div class="story-row"><dt>Problem</dt><dd>Model realistic satellite orbits accounting for Earth's oblateness, targeting astrodynamics work.</dd></div>
+        <div class="story-row"><dt>Approach</dt><dd>Two-body propagator with J2 perturbations and RK45 adaptive integration (~2,100 lines of Python).</dd></div>
+        <div class="story-row result"><dt>Results</dt><dd>Validated to 0.4% against analytical nodal regression across ISS, GEO, and Molniya orbits.</dd></div>
+        <div class="story-row"><dt>Next</dt><dd>Add drag/SRP perturbations and more orbit regimes.</dd></div>
+      </dl>
       <p class="entry-tags">Python, SciPy, RK45, NumPy, Matplotlib</p>
       <a class="entry-link" href="https://github.com/rayankhan2686" target="_blank">View on GitHub →</a>
     </article>
@@ -264,8 +359,13 @@
         <img src="img/pyfea.png" alt="Cantilever beam solved by pyFEA, colored by von Mises stress" loading="lazy">
         <figcaption>Cantilever beam solved by pyFEA, colored by von Mises stress.</figcaption>
       </figure>
-      <p>A linear-static finite-element solver written from the ground up to demonstrate the method itself, not call a library. It reads a YAML model deck, builds the 6×6 constitutive matrix, assembles Tet4 elements into a global stiffness system, solves for displacement and stress, and exports .vtu fields for ParaView. Element eigenvalue spectra are verified for correct rigid-body and deformation modes.</p>
-      <p class="entry-tags">Python, NumPy, FEM, YAML, ParaView</p>
+      <dl class="story">
+        <div class="story-row"><dt>Problem</dt><dd>Understand finite element analysis from first principles instead of treating commercial solvers as black boxes.</dd></div>
+        <div class="story-row"><dt>Approach</dt><dd>3D FEA solver in pure Python — Tet4/Tet10 elements, sparse global stiffness assembly, von Mises stress recovery, gmsh meshing, Streamlit 3D viewer.</dd></div>
+        <div class="story-row result"><dt>Results</dt><dd>Working solver with interactive 3D visualization, validated against known cases.</dd></div>
+        <div class="story-row"><dt>Next</dt><dd>Additional element types and validation cases.</dd></div>
+      </dl>
+      <p class="entry-tags">Python, gmsh, PyVista, Streamlit, NumPy</p>
       <a class="entry-link" href="https://github.com/rayankhan2686" target="_blank">View on GitHub →</a>
     </article>
 
@@ -278,9 +378,100 @@
         <img src="img/rocket-launch-simulator.jpg" alt="The Arduino-based launch-abort system breadboard, with LCD readout" loading="lazy">
         <figcaption>The Arduino-based launch-abort system breadboard, with LCD readout.</figcaption>
       </figure>
-      <p>An Arduino abort system modeled as a finite-state machine. It monitors launch conditions and drives the vehicle through armed, launch, and abort states with hardware logic — a compact study in safety-critical control flow and embedded decision-making.</p>
+      <dl class="story">
+        <div class="story-row"><dt>Problem</dt><dd>Halt unsafe rocket-launch countdowns automatically, without relying on a human to call the abort.</dd></div>
+        <div class="story-row"><dt>Approach</dt><dd>Non-blocking Arduino sensor fusion (proximity + temperature) driving a fail-safe finite-state machine across armed/launch/abort states; any sensor fault, threshold breach, or timeout defaults to an immediate hold. Led a 6-person build team.</dd></div>
+        <div class="story-row result"><dt>Results</dt><dd>Real-time abort detection in under 1 second, with fail-safe holds verified across fault, threshold, and timeout cases.</dd></div>
+        <div class="story-row"><dt>Next</dt><dd>None planned — complete for its course/competition scope.</dd></div>
+      </dl>
       <p class="entry-tags">Arduino, C++, Finite-State Machine, Embedded</p>
       <a class="entry-link" href="https://github.com/rayankhan2686" target="_blank">View on GitHub →</a>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <h3>Autonomous Delivery Robot — Enclosure Redesign</h3>
+        <span class="entry-time">Head Engineer &amp; Team Lead</span>
+      </div>
+      <figure class="entry-figure video-feature">
+        <video controls preload="metadata">
+          <source src="img/robot-assembly-animation.mp4" type="video/mp4">
+        </video>
+        <figcaption>Assembly animation</figcaption>
+      </figure>
+      <figure class="entry-figure">
+        <img src="img/robot-cad-assembly.png" alt="CAD assembly view of the robot enclosure redesign" loading="lazy" class="fallback-img">
+        <div class="img-placeholder">Image coming soon</div>
+        <figcaption>CAD assembly</figcaption>
+      </figure>
+      <dl class="story">
+        <div class="story-row"><dt>Problem</dt><dd>A sidewalk food-delivery robot couldn't traverse curbs — a key real-world limitation blocking deployment.</dd></div>
+        <div class="story-row"><dt>Approach</dt><dd>As head engineer, set the design direction and personally designed the main body and internal container system — enclosure walls, access doors with handles, removable top/bottom lids, and an insulated payload compartment; raised the chassis and reworked the drive geometry to clear standard curb heights while keeping the payload bay level and secure.</dd></div>
+        <div class="story-row result"><dt>Results</dt><dd>Modeled as a fully-constrained multi-part SolidWorks assembly with a complete engineering drawing package.</dd></div>
+        <div class="story-row"><dt>Next</dt><dd>Not specified yet — let me know if this is moving to fabrication/testing.</dd></div>
+      </dl>
+      <p class="entry-tags">SolidWorks</p>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <h3>Internship Application Tracker</h3>
+        <span class="entry-time">Solo project</span>
+      </div>
+      <figure class="entry-figure">
+        <img src="img/tracker-dashboard.png" alt="Ranked results / tracker view" loading="lazy" class="fallback-img">
+        <div class="img-placeholder">Image coming soon</div>
+        <figcaption>Ranked results / tracker view</figcaption>
+      </figure>
+      <dl class="story">
+        <div class="story-row"><dt>Problem</dt><dd>A scattered, manual internship search across dozens of company career pages, with no single place to track fit or application status.</dd></div>
+        <div class="story-row"><dt>Approach</dt><dd>Aggregates postings from the Greenhouse, Lever, and Ashby job-board APIs plus a Playwright-based Workday scraper; stores them in a SQLite database; uses the Claude API to score each posting for fit against a candidate profile.</dd></div>
+        <div class="story-row result"><dt>Results</dt><dd>Tracks 75+ companies through the full application lifecycle in one queryable, ranked pipeline.</dd></div>
+        <div class="story-row"><dt>Next</dt><dd>Add more companies to the pipeline.</dd></div>
+      </dl>
+      <p class="entry-tags">Python, SQLite, Playwright, Claude API</p>
+      <a class="entry-link" href="TODO-ADD-REPO-URL" target="_blank">View on GitHub →</a>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <h3>Adaptive Pediatric Gait Trainer</h3>
+        <span class="entry-time">Assistive Technology</span>
+      </div>
+      <div class="entry-carousel" data-carousel>
+        <div class="carousel-track">
+          <div class="carousel-slide is-active">
+            <img src="img/IMG_0078_cropped.png" alt="Adaptive gait trainer, assembled frame" loading="lazy" class="fallback-img">
+            <div class="img-placeholder">Image coming soon</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="img/IMG_0079_cropped.png" alt="Adaptive gait trainer, assembled frame" loading="lazy" class="fallback-img">
+            <div class="img-placeholder">Image coming soon</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="img/IMG_0080_cropped.png" alt="Adaptive gait trainer, CAD assembly drawing" loading="lazy" class="fallback-img">
+            <div class="img-placeholder">Image coming soon</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="img/IMG_0081_cropped.png" alt="Adaptive gait trainer, CAD assembly drawing" loading="lazy" class="fallback-img">
+            <div class="img-placeholder">Image coming soon</div>
+          </div>
+        </div>
+        <button class="carousel-btn prev" type="button" aria-label="Previous photo">‹</button>
+        <button class="carousel-btn next" type="button" aria-label="Next photo">›</button>
+        <div class="carousel-dots">
+          <button class="carousel-dot is-active" type="button" aria-label="Photo 1"></button>
+          <button class="carousel-dot" type="button" aria-label="Photo 2"></button>
+          <button class="carousel-dot" type="button" aria-label="Photo 3"></button>
+          <button class="carousel-dot" type="button" aria-label="Photo 4"></button>
+        </div>
+      </div>
+      <dl class="story">
+        <div class="story-row"><dt>Problem</dt><dd>Give a child with a spinal impairment affecting independent standing and walking safe, upright mobility with proper spinal support.</dd></div>
+        <div class="story-row"><dt>Approach</dt><dd>Co-designed a lightweight PVC-frame gait trainer with 3D-printed structural joints and swivel casters, custom-sized to the child; CAD-modeled the structural joints and helped lead fabrication and assembly with a small team.</dd></div>
+        <div class="story-row result"><dt>Results</dt><dd>Delivered a working, custom-fit device, built through Accessible 4 All in Spring 2026, that let the child walk with support.</dd></div>
+      </dl>
+      <p class="entry-tags">SolidWorks, 3D Printing, PVC Fabrication</p>
     </article>
   </section>
 
@@ -295,6 +486,15 @@
       </div>
       <div class="entry-org">Accessible 4 All — Registered 501(c)(3)</div>
       <p>Co-founded an engineering nonprofit that designs and modifies adaptive devices for children with disabilities. Raised over $3,500 through donor outreach and led teams of 5 to 20+ people building and modifying devices.</p>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <h3>Co-Designer &amp; Fabrication Lead</h3>
+        <span class="entry-time">Spring 2026</span>
+      </div>
+      <div class="entry-org">Accessible 4 All — Adaptive Gait Trainer</div>
+      <p>Co-designed and helped fabricate an adaptive gait trainer for a child with a spinal impairment affecting independent standing and walking — a lightweight PVC frame with 3D-printed structural joints and swivel casters, custom-sized to fit. CAD-modeled the structural joints and helped lead assembly with a small team, delivering a working device that gave the child safe, upright mobility with proper spinal support.</p>
     </article>
 
     <article class="entry">
@@ -352,6 +552,31 @@
 
   addEventListener('hashchange', syncFromHash);
   syncFromHash();
+
+  document.querySelectorAll('img.fallback-img').forEach(img => {
+    img.addEventListener('error', () => {
+      img.style.display = 'none';
+      const placeholder = img.nextElementSibling;
+      if (placeholder) placeholder.style.display = 'flex';
+    });
+  });
+
+  document.querySelectorAll('[data-carousel]').forEach(carousel => {
+    const slides = carousel.querySelectorAll('.carousel-slide');
+    const dots = carousel.querySelectorAll('.carousel-dot');
+    let index = 0;
+
+    function show(i) {
+      index = (i + slides.length) % slides.length;
+      slides.forEach((s, n) => s.classList.toggle('is-active', n === index));
+      dots.forEach((d, n) => d.classList.toggle('is-active', n === index));
+    }
+
+    carousel.querySelector('.prev').addEventListener('click', (e) => { e.stopPropagation(); show(index - 1); });
+    carousel.querySelector('.next').addEventListener('click', (e) => { e.stopPropagation(); show(index + 1); });
+    carousel.querySelector('.carousel-track').addEventListener('click', () => show(index + 1));
+    dots.forEach((d, n) => d.addEventListener('click', (e) => { e.stopPropagation(); show(n); }));
+  });
 </script>
 
 </body>
