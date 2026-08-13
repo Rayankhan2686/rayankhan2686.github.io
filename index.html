@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Rayan Khan — Aerospace Engineering</title>
-<meta name="description" content="Rayan Khan — Aerospace Engineering student at Rutgers University. Undergraduate CFD researcher building physics-first simulation tools." />
+<title>Rayan Khan — Mechanical Engineering</title>
+<meta name="description" content="Rayan Khan — Mechanical Engineering student at Rutgers University. Undergraduate CFD researcher building physics-first simulation tools." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -175,6 +175,8 @@
   .carousel-slide .img-placeholder{
     position:absolute; inset:0; aspect-ratio:auto; border:none;
   }
+  .carousel-wide .carousel-track{aspect-ratio:16/7}
+  .carousel-wide .carousel-slide img{object-fit:contain}
   .carousel-btn{
     position:absolute; top:50%; transform:translateY(-50%); z-index:2;
     background:rgba(250,250,248,.88); border:1px solid var(--line); color:var(--ink);
@@ -250,7 +252,7 @@
   <section id="home" class="tab active">
     <div class="home-top">
       <div class="uni">Rutgers University</div>
-      <div class="uni-sub">Aerospace Engineering | GPA: 3.54/4.00</div>
+      <div class="uni-sub">Mechanical Engineering | GPA: 3.54/4.00</div>
     </div>
 
     <div class="home-center">
@@ -258,17 +260,17 @@
       <a class="email" href="mailto:khanrayan2686@gmail.com">khanrayan2686@gmail.com</a>
     </div>
 
-    <p class="home-bottom">Columbus, NJ&nbsp;| Aerospace Research @ Rutgers&nbsp;| AIAA Design/Build/Fly&nbsp;| <a class="resume-link" href="Rayan_Khan_Resume_2026.pdf" target="_blank">Resume</a></p>
+    <p class="home-bottom">Columbus, NJ&nbsp;| CFD Research @ Rutgers&nbsp;| AIAA Design/Build/Fly&nbsp;| <a class="resume-link" href="Rayan_Khan_Resume_2026.pdf" target="_blank">Resume</a></p>
   </section>
 
   <!-- ================= ABOUT ================= -->
   <section id="about" class="tab">
     <h2>About</h2>
-    <p>I'm an undergraduate pursuing a B.S. in Aerospace Engineering, with a double major in Mechanical Engineering, at Rutgers University. I build physics-first engineering tools from scratch — CFD pipelines, orbital propagators, and finite-element solvers — because I care about understanding the math behind every line of code, not just running the library.</p>
-    <p>I'm an undergraduate engineer focused on simulation, aerodynamics, and flight systems, currently targeting aerospace and defense internships in research, design, and simulation roles.</p>
+    <p>I'm a mechanical engineering student at Rutgers University — a double major in Mechanical and Aerospace Engineering. I build physics-first engineering tools from scratch — CFD pipelines, orbital propagators, and finite-element solvers — because I care about understanding the math behind every line of code, not just running the library.</p>
+    <p>A mechanical engineering student focused on aerodynamics, controls, and computational simulation, currently targeting mechanical, aerospace, and defense internships in research, design, and simulation roles.</p>
 
     <h3 class="sub">Education</h3>
-    <p><b>B.S. Aerospace Engineering</b> (double major, Mechanical Engineering)<br>Rutgers University — New Brunswick</p>
+    <p><b>B.S. Mechanical Engineering</b> (double major, Aerospace Engineering)<br>Rutgers University — New Brunswick</p>
     <div class="edu-facts">
       <span><b>3.54</b> GPA</span>
       <span><b>May 2028</b> Expected</span>
@@ -317,9 +319,10 @@
         <span class="entry-time">Embedded · Sensor Fusion</span>
       </div>
       <figure class="entry-figure">
-        <img src="img/ahrs-demo.png" alt="Strapdown AHRS attitude estimate demo" loading="lazy" class="fallback-img">
-        <div class="img-placeholder">Image coming soon</div>
-        <figcaption>Attitude estimate output</figcaption>
+        <video controls preload="metadata">
+          <source src="img/ahrs-demo.mp4" type="video/mp4">
+        </video>
+        <figcaption>Live attitude estimate from the fusion filter</figcaption>
       </figure>
       <dl class="story">
         <div class="story-row"><dt>Problem</dt><dd>Estimate accurate 3D attitude and heading from noisy, drifting IMU sensors — raw gyro integration alone drifts hundreds of degrees over time.</dd></div>
@@ -341,7 +344,7 @@
         <figcaption>ISS, Molniya, and GEO orbits computed by the propagator.</figcaption>
       </figure>
       <dl class="story">
-        <div class="story-row"><dt>Problem</dt><dd>Model realistic satellite orbits accounting for Earth's oblateness, targeting astrodynamics work.</dd></div>
+        <div class="story-row"><dt>Problem</dt><dd>Model realistic satellite orbits accounting for Earth's oblateness — a numerical-integration and dynamical-systems simulation problem, with orbital mechanics as the application.</dd></div>
         <div class="story-row"><dt>Approach</dt><dd>Two-body propagator with J2 perturbations and RK45 adaptive integration (~2,100 lines of Python).</dd></div>
         <div class="story-row result"><dt>Results</dt><dd>Validated to 0.4% against analytical nodal regression across ISS, GEO, and Molniya orbits.</dd></div>
         <div class="story-row"><dt>Next</dt><dd>Add drag/SRP perturbations and more orbit regimes.</dd></div>
@@ -355,10 +358,34 @@
         <h3>pyFEA <span style="font-style:italic; color:var(--ink-soft); font-size:.85rem">— in progress</span></h3>
         <span class="entry-time">Structures · FEA</span>
       </div>
-      <figure class="entry-figure">
-        <img src="img/pyfea.png" alt="Cantilever beam solved by pyFEA, colored by von Mises stress" loading="lazy">
-        <figcaption>Cantilever beam solved by pyFEA, colored by von Mises stress.</figcaption>
-      </figure>
+      <div class="entry-carousel carousel-wide" data-carousel>
+        <div class="carousel-track">
+          <div class="carousel-slide is-active">
+            <img src="img/pyfea-2.png" alt="pyFEA 3D result viewer — von Mises stress on an L-bracket with load arrow" loading="lazy" class="fallback-img">
+            <div class="img-placeholder">Image coming soon</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="img/pyfea-1.png" alt="pyFEA web app — results panel and 3D stress viewer for an L-bracket" loading="lazy" class="fallback-img">
+            <div class="img-placeholder">Image coming soon</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="img/pyfea-3.png" alt="pyFEA configuration summary — material, mesh estimates, and boundary conditions" loading="lazy" class="fallback-img">
+            <div class="img-placeholder">Image coming soon</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="img/pyfea-4.png" alt="pyFEA web FEA solver — geometry upload and bounding-box summary" loading="lazy" class="fallback-img">
+            <div class="img-placeholder">Image coming soon</div>
+          </div>
+        </div>
+        <button class="carousel-btn prev" type="button" aria-label="Previous image">‹</button>
+        <button class="carousel-btn next" type="button" aria-label="Next image">›</button>
+        <div class="carousel-dots">
+          <button class="carousel-dot is-active" type="button" aria-label="Image 1"></button>
+          <button class="carousel-dot" type="button" aria-label="Image 2"></button>
+          <button class="carousel-dot" type="button" aria-label="Image 3"></button>
+          <button class="carousel-dot" type="button" aria-label="Image 4"></button>
+        </div>
+      </div>
       <dl class="story">
         <div class="story-row"><dt>Problem</dt><dd>Understand finite element analysis from first principles instead of treating commercial solvers as black boxes.</dd></div>
         <div class="story-row"><dt>Approach</dt><dd>3D FEA solver in pure Python — Tet4/Tet10 elements, sparse global stiffness assembly, von Mises stress recovery, gmsh meshing, Streamlit 3D viewer.</dd></div>
@@ -510,7 +537,7 @@
   <!-- ================= CONTACT ================= -->
   <section id="contact" class="tab">
     <h2>Contact</h2>
-    <p style="text-align:center">Open to aerospace, defense, and space internships — research, design, and simulation roles especially.</p>
+    <p style="text-align:center">Open to mechanical, aerospace, and defense internships — research, design, and simulation roles especially.</p>
     <div class="contact-list">
       <div><span class="k">Email</span><span class="v"><a href="mailto:khanrayan2686@gmail.com">khanrayan2686@gmail.com</a></span></div>
       <div><span class="k">GitHub</span><span class="v"><a href="https://github.com/rayankhan2686" target="_blank">github.com/rayankhan2686</a></span></div>
@@ -533,7 +560,7 @@
     if (!TABS.includes(id)) id = 'home';
     document.querySelectorAll('.tab').forEach(el => el.classList.toggle('active', el.id === id));
     document.querySelectorAll('.site-nav a').forEach(a => a.classList.toggle('current', a.dataset.tab === id));
-    document.title = id === 'home' ? 'Rayan Khan — Aerospace Engineering' : `Rayan Khan · ${TITLES[id]}`;
+    document.title = id === 'home' ? 'Rayan Khan — Mechanical Engineering' : `Rayan Khan · ${TITLES[id]}`;
     window.scrollTo(0, 0);
   }
 
