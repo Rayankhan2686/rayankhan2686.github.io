@@ -266,8 +266,7 @@
   <!-- ================= ABOUT ================= -->
   <section id="about" class="tab">
     <h2>About</h2>
-    <p>I'm a mechanical engineering student at Rutgers University — a double major in Mechanical and Aerospace Engineering. I build physics-first engineering tools from scratch — CFD pipelines, orbital propagators, and finite-element solvers — because I care about understanding the math behind every line of code, not just running the library.</p>
-    <p>A mechanical engineering student focused on aerodynamics, controls, and computational simulation, currently targeting mechanical, aerospace, and defense internships in research, design, and simulation roles.</p>
+    <p>I'm a mechanical engineering student at Rutgers University — a double major in Mechanical and Aerospace Engineering — focused on aerodynamics, controls, and computational simulation. I build physics-first engineering tools from scratch, including CFD pipelines, orbital propagators, and finite-element solvers, because I care about understanding the math behind every line of code, not just running the library. I'm currently targeting mechanical, aerospace, and defense internships in research, design, and simulation roles.</p>
 
     <h3 class="sub">Education</h3>
     <p><b>B.S. Mechanical Engineering</b> (double major, Aerospace Engineering)<br>Rutgers University — New Brunswick</p>
@@ -300,12 +299,24 @@
         <img src="img/cfd-airfoil-pressure.png" alt="ParaView pressure-field render of a NACA 0012 airfoil at 9 degrees angle of attack" loading="lazy">
         <figcaption>Pressure field around a NACA 0012 airfoil at 9° angle of attack, rendered in ParaView (Re = 2×10⁵).</figcaption>
       </figure>
+      <figure class="entry-figure">
+        <img src="img/cfd-xfoil-deltacl.png" alt="Lift-coefficient deficit between XFOIL and OpenFOAM versus angle of attack for NACA 0012, 2412, and 4412 at Re = 2 times 10 to the 5th" loading="lazy" class="fallback-img">
+        <div class="img-placeholder">Image coming soon</div>
+        <figcaption>ΔCl (XFOIL − OpenFOAM) vs. angle of attack, all three airfoils — the deficit stays small in attached flow and widens past stall onset.</figcaption>
+      </figure>
+      <dl class="story">
+        <div class="story-row"><dt>Problem</dt><dd>Quantify how camber (NACA 0012/2412/4412) affects lift, drag, and stall behavior at Re = 2×10⁵, building the full OpenFOAM/Python pipeline — meshing through post-processing — from scratch instead of treating the solver as a black box.</dd></div>
+        <div class="story-row"><dt>Approach</dt><dd>Automated an OpenFOAM/Python pipeline (STL generation → blockMesh → simpleFoam with k-ω SST → force-coefficient extraction) and ran 87+ steady RANS cases across a −4° to 20° angle-of-attack sweep at 0.5° resolution near stall, checking every result against XFOIL and a dedicated mesh-independence study rather than trusting a single mesh.</dd></div>
+        <div class="story-row"><dt>Tradeoffs</dt><dd>An early mesh used snappyHexMesh, which refines cells in all three directions near the airfoil surface — silently splitting the single spanwise cell into two even though the case was meant to be strictly 2D. The defect didn't crash the solver or show up in residuals; it surfaced only as OpenFOAM's checkMesh flagging the mesh "not 1D or 2D." Before trusting that diagnosis, I ruled out the more common suspects one at a time — force-direction vectors, reference area, a mis-read results column, degenerate STL geometry — all confirmed correct against the case's own log files. That process of elimination pointed at the mesh itself. I rejected two cheaper patches (thickening the span to dilute the z-split; excluding a snappyHexMesh refinement region near the surface) as unreliable, and instead rebuilt meshing around blockMesh's <code>project</code> feature — following the compressible/rhoSimpleFoam/aerofoilNACA0012 tutorial pattern — to snap block vertices directly onto the airfoil surface with a guaranteed single-cell span.</dd></div>
+        <div class="story-row result"><dt>Results</dt><dd>The corrected mesh raised Cl at α = 6° from 0.109 to 0.583 (below) — consistent with thin-airfoil theory — and the full sweep validated to within roughly 4% of XFOIL for attached flow (α = −4° to 7°). A follow-up mesh-independence study found α ≥ 8° does not converge under refinement — Cl and Cd reverse trend direction rather than shrink across four mesh tiers — so that range is flagged as unreliable and excluded rather than reported as clean data.</dd></div>
+        <div class="story-row"><dt>Next</dt><dd>Preparing these results for an AIAA SciTech publication.</dd></div>
+      </dl>
       <ul class="achievements">
-        <li>Built an OpenFOAM/Python pipeline computing aerodynamic coefficients for NACA 0012/2412/4412 airfoils at Re = 2×10⁵, automating meshing through post-processing.</li>
-        <li>Validated 87+ RANS simulations against XFOIL to within 4% across a −4° to 20° angle-of-attack sweep at 0.5° resolution.</li>
-        <li>Traced a 44× lift-coefficient error to meshing artifacts via root-cause analysis; corrected it with a structured blockMesh C-grid topology.</li>
-        <li>Preparing results for an AIAA SciTech publication.</li>
+        <li>Before (snappyHexMesh, non-2D mesh — checkMesh flagged): Cl = 0.109 at α = 6°.</li>
+        <li>After (blockMesh C-grid, verified 2D): Cl = 0.583 at α = 6° — roughly a 5× correction.</li>
       </ul>
+      <p class="entry-tags">OpenFOAM, Python, ParaView, XFOIL, blockMesh</p>
+      <a class="entry-link" href="https://github.com/rayankhan2686/naca-airfoil-cfd" target="_blank">View on GitHub →</a>
     </article>
   </section>
 
@@ -324,11 +335,34 @@
         </video>
         <figcaption>Live attitude estimate from the fusion filter</figcaption>
       </figure>
+      <div class="entry-carousel carousel-wide" data-carousel>
+        <div class="carousel-track">
+          <div class="carousel-slide is-active">
+            <img src="img/ahrs-drift-test.png" alt="Drift test plot: gyro-only integration vs complementary filter vs ground truth over a 600 second static run" loading="lazy" class="fallback-img">
+            <div class="img-placeholder">Image coming soon</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="img/ahrs-gimbal-lock-test.png" alt="Gimbal-lock test plot: Euler-based complementary filter vs quaternion-based Madgwick filter as true pitch ramps to 90 degrees" loading="lazy" class="fallback-img">
+            <div class="img-placeholder">Image coming soon</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="img/ahrs-known-angle-test.png" alt="Known-angle test plot: fused roll estimate vs ground truth on a roll sweep from 0 to 45 to 0 degrees" loading="lazy" class="fallback-img">
+            <div class="img-placeholder">Image coming soon</div>
+          </div>
+        </div>
+        <button class="carousel-btn prev" type="button" aria-label="Previous plot">‹</button>
+        <button class="carousel-btn next" type="button" aria-label="Next plot">›</button>
+        <div class="carousel-dots">
+          <button class="carousel-dot is-active" type="button" aria-label="Plot 1"></button>
+          <button class="carousel-dot" type="button" aria-label="Plot 2"></button>
+          <button class="carousel-dot" type="button" aria-label="Plot 3"></button>
+        </div>
+      </div>
       <dl class="story">
         <div class="story-row"><dt>Problem</dt><dd>Estimate accurate 3D attitude and heading from noisy, drifting IMU sensors — raw gyro integration alone drifts hundreds of degrees over time.</dd></div>
-        <div class="story-row"><dt>Approach</dt><dd>An ESP32 Feather V2 with an ICM-20948 9-DoF IMU streams raw sensor data to a Python host running complementary and Madgwick fusion filters implemented from first principles against a custom quaternion convention; architected as "dumb firmware, smart host" with a transport-agnostic parser.</dd></div>
-        <div class="story-row result"><dt>Results</dt><dd>The complementary filter holds 0.245° RMS attitude error over a 10-minute run versus ~300° of raw gyro-only drift — roughly a 1200× improvement — with Madgwick adding further gains near gimbal lock; validated by a 19/19 passing test suite.</dd></div>
-        <div class="story-row"><dt>Next</dt><dd>Not specified yet — let me know what's planned.</dd></div>
+        <div class="story-row"><dt>Approach</dt><dd>An ESP32 Feather V2 with an ICM-20948 9-DoF IMU streams raw sensor data to a Python host running complementary and Madgwick fusion filters implemented from first principles; architected as "dumb firmware, smart host" with a transport-agnostic parser so the same filter code runs unchanged on a synthetic ground-truth generator, a recorded CSV, or a live UDP stream.</dd></div>
+        <div class="story-row"><dt>Tradeoffs</dt><dd>The nav frame is +Z-up (ENU-style), not the aerospace-standard NED, so a flat, stationary board reads accel ≈ [0, 0, +1] g directly — one less sign flip to get wrong when cross-checking real hardware. Both filters still use the standard ZYX yaw-pitch-roll (3-2-1) sequence. The bigger tradeoff is representation: the Tier-1 complementary filter fuses accelerometer and gyro directly in Euler angles, which is simple but degenerate near ±90° pitch, where roll and yaw lose their distinction. Driving true pitch to 90° in the ground-truth simulator confirms it — the Euler-based filter's error grows to 1.54° near the pole, while the quaternion-based Madgwick filter, whose internal state never passes through that coordinate singularity, stays at 0.65° max error over the same maneuver. That measured comparison, not intuition, is why the Tier-2 filter is quaternion-based rather than a refined Euler filter.</dd></div>
+        <div class="story-row result"><dt>Results</dt><dd>Over a 600 s static run with a 0.5°/s gyro bias, the complementary filter holds attitude to ~0.25° RMS versus ~300° of raw gyro-only drift — roughly a 1200× improvement. On a known-angle roll sweep (0°→45°→0°) it tracks true roll to ~0.12° RMS after a 1 s startup transient. Validated by a 32/32 passing test suite covering parsing, the simulator, both filters, the UDP transport, and the visualization geometry.</dd></div>
       </dl>
       <p class="entry-tags">C++, Python, ESP32, embedded</p>
       <a class="entry-link" href="https://github.com/rayankhan2686/strapdown-ahrs" target="_blank">View on GitHub →</a>
@@ -343,6 +377,11 @@
         <img src="img/orbital-propagator.png" alt="3D visualization of ISS, Molniya, and GEO orbits computed by the propagator" loading="lazy">
         <figcaption>ISS, Molniya, and GEO orbits computed by the propagator.</figcaption>
       </figure>
+      <figure class="entry-figure">
+        <img src="img/orbital-j2-comparison.png" alt="J2 perturbation comparison for the ISS orbit over 5 days: nodal regression, apsidal precession, inclination, and altitude, Keplerian vs J2-perturbed" loading="lazy" class="fallback-img">
+        <div class="img-placeholder">Image coming soon</div>
+        <figcaption>J2 perturbation vs. unperturbed Keplerian orbit, ISS case over 5 days — nodal regression, apsidal precession, inclination, and altitude.</figcaption>
+      </figure>
       <dl class="story">
         <div class="story-row"><dt>Problem</dt><dd>Model realistic satellite orbits accounting for Earth's oblateness — a numerical-integration and dynamical-systems simulation problem, with orbital mechanics as the application.</dd></div>
         <div class="story-row"><dt>Approach</dt><dd>Two-body propagator with J2 perturbations and RK45 adaptive integration (~2,100 lines of Python).</dd></div>
@@ -350,7 +389,7 @@
         <div class="story-row"><dt>Next</dt><dd>Add drag/SRP perturbations and more orbit regimes.</dd></div>
       </dl>
       <p class="entry-tags">Python, SciPy, RK45, NumPy, Matplotlib</p>
-      <a class="entry-link" href="https://github.com/rayankhan2686" target="_blank">View on GitHub →</a>
+      <a class="entry-link" href="https://github.com/rayankhan2686/orbital-propagator" target="_blank">View on GitHub →</a>
     </article>
 
     <article class="entry">
@@ -389,11 +428,12 @@
       <dl class="story">
         <div class="story-row"><dt>Problem</dt><dd>Understand finite element analysis from first principles instead of treating commercial solvers as black boxes.</dd></div>
         <div class="story-row"><dt>Approach</dt><dd>3D FEA solver in pure Python — Tet4/Tet10 elements, sparse global stiffness assembly, von Mises stress recovery, gmsh meshing, Streamlit 3D viewer.</dd></div>
-        <div class="story-row result"><dt>Results</dt><dd>Working solver with interactive 3D visualization, validated against known cases.</dd></div>
+        <div class="story-row"><dt>Tradeoffs</dt><dd>Tet10 is the default element even though Tet4 assembles faster: a linear Tet4 can only represent constant strain per element, so it needs a much finer mesh to resolve a bending gradient, while the quadratic Tet10 captures that gradient at a coarser element count. Validating a cantilever against Euler-Bernoulli theory shows the tradeoff directly — tip deflection matches to within 0.1% on a coarse mesh, but peak root stress still under-predicts by ~11%, because nodal averaging and the Saint-Venant boundary layer at the fully-clamped root both blur the true peak; closing that gap needs local refinement at the cost of a slower solve. Singularity is also checked cheaply rather than exactly: before solving, the assembled stiffness matrix is scanned for any free degree of freedom left with an all-zero row after boundary conditions are applied — a fast, necessary-but-not-sufficient guard against unconstrained rigid-body modes. It catches the common case (a node left completely unconstrained) but not a rigid-body mode coupled across several DOFs, which would need a full rank or eigenvalue check to detect.</dd></div>
+        <div class="story-row result"><dt>Results</dt><dd>Cantilever (Tet10, 2,395 elements): tip deflection within 0.1% of the Euler-Bernoulli prediction; root von Mises stress under-predicts by 11.3%, consistent with the boundary-layer effect above. Plate-with-a-hole: FE stress-concentration factor Kt = 2.72 vs. the Pilkey finite-width reference of 2.51 (8.6% error).</dd></div>
         <div class="story-row"><dt>Next</dt><dd>Additional element types and validation cases.</dd></div>
       </dl>
       <p class="entry-tags">Python, gmsh, PyVista, Streamlit, NumPy</p>
-      <a class="entry-link" href="https://github.com/rayankhan2686" target="_blank">View on GitHub →</a>
+      <a class="entry-link" href="https://github.com/rayankhan2686/pyfea" target="_blank">View on GitHub →</a>
     </article>
 
     <article class="entry">
@@ -412,7 +452,6 @@
         <div class="story-row"><dt>Next</dt><dd>None planned — complete for its course/competition scope.</dd></div>
       </dl>
       <p class="entry-tags">Arduino, C++, Finite-State Machine, Embedded</p>
-      <a class="entry-link" href="https://github.com/rayankhan2686" target="_blank">View on GitHub →</a>
     </article>
 
     <article class="entry">
@@ -457,7 +496,6 @@
         <div class="story-row"><dt>Next</dt><dd>Add more companies to the pipeline.</dd></div>
       </dl>
       <p class="entry-tags">Python, SQLite, Playwright, Claude API</p>
-      <a class="entry-link" href="TODO-ADD-REPO-URL" target="_blank">View on GitHub →</a>
     </article>
 
     <article class="entry">
@@ -541,7 +579,7 @@
     <div class="contact-list">
       <div><span class="k">Email</span><span class="v"><a href="mailto:khanrayan2686@gmail.com">khanrayan2686@gmail.com</a></span></div>
       <div><span class="k">GitHub</span><span class="v"><a href="https://github.com/rayankhan2686" target="_blank">github.com/rayankhan2686</a></span></div>
-      <div><span class="k">LinkedIn</span><span class="v"><a href="https://www.linkedin.com/in/rayan-khan-58682a32a" target="_blank">linkedin.com/in/rayan-khan</a></span></div>
+      <div><span class="k">LinkedIn</span><span class="v"><a href="https://www.linkedin.com/in/rayan-khan-58682a32a" target="_blank">linkedin.com/in/rayan-khan-58682a32a</a></span></div>
     </div>
   </section>
 
