@@ -19,7 +19,11 @@
     --line:rgba(17,17,17,.14);
     --display:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
     --body:'EB Garamond', Georgia, 'Times New Roman', serif;
-    --maxw:700px;
+    --maxw:1160px;      /* overall page container — was 700px */
+    --measure:700px;    /* prose/text column width — the old --maxw value, unchanged */
+    --figure-w:880px;   /* standard figure / carousel width */
+    --hero-w:1040px;    /* hero media (e.g. the AHRS demo video) width */
+    --shadow:0 2px 14px rgba(17,17,17,.07);
   }
   *{box-sizing:border-box; margin:0; padding:0}
   html{scroll-behavior:smooth}
@@ -52,7 +56,18 @@
   .site-nav a:hover{color:var(--ink)}
   .site-nav a.current{color:var(--ink); border-bottom-color:var(--ink)}
 
-  main{max-width:var(--maxw); margin:0 auto; padding:0 24px; width:100%}
+  main{max-width:var(--maxw); margin:0 auto; padding:0 28px; width:100%}
+
+  /* Text-bearing elements are constrained to a comfortable reading measure
+     and centered, independent of how wide the page container is; figures
+     and carousels (below) are allowed to run wider. */
+  .home-top, .home-center, .home-bottom,
+  .tab > p, .tab h3.sub,
+  .entry-head, .entry-org, .entry p, .entry-tags, .entry-link,
+  .story, .achievements,
+  .skills, .edu-facts, .contact-list{
+    max-width:var(--measure); margin-left:auto; margin-right:auto;
+  }
 
   .tab{display:none; scroll-margin-top:90px}
   .tab.active{display:block; animation:fade .5s ease}
@@ -96,13 +111,13 @@
     font-variant-caps:small-caps; -webkit-font-feature-settings:"smcp" 1; font-feature-settings:"smcp" 1;
   }
   .tab h3.sub{
-    font-family:var(--display); font-weight:600; font-size:1.15rem; margin:40px 0 18px;
+    font-family:var(--display); font-weight:600; font-size:1.15rem; margin:40px auto 18px;
     font-variant-caps:small-caps; -webkit-font-feature-settings:"smcp" 1; font-feature-settings:"smcp" 1;
   }
-  .tab > p{font-size:1.05rem; margin-bottom:1.1em}
+  .tab > p{font-size:1.18rem; margin-bottom:1.1em; line-height:1.6}
 
   /* ---------- ENTRIES (experience / leadership / projects) ---------- */
-  .entry{padding-top:32px; margin-top:32px; border-top:1px solid var(--line)}
+  .entry{padding-top:40px; margin-top:40px; border-top:1px solid var(--line)}
   .entry:first-of-type{padding-top:0; margin-top:0; border-top:none}
   .entry-head{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:6px 16px}
   .entry-head h3{font-family:var(--display); font-weight:600; font-size:1.28rem; letter-spacing:.01em}
@@ -110,46 +125,51 @@
     font-size:.82rem; color:var(--ink-soft); white-space:nowrap; letter-spacing:.04em;
     font-variant-caps:small-caps; -webkit-font-feature-settings:"smcp" 1; font-feature-settings:"smcp" 1;
   }
-  .entry-org{font-style:italic; color:var(--ink-soft); margin:.25em 0 .7em; font-size:1rem}
-  .entry p{font-size:1rem; margin-bottom:.6em}
+  .entry-org{font-style:italic; color:var(--ink-soft); margin:.25em auto .7em; font-size:1.1rem}
+  .entry p{font-size:1.12rem; margin-bottom:.6em; line-height:1.6}
   .entry-tags{font-style:italic; color:var(--ink-soft); font-size:.92rem; margin-top:.8em}
   .entry-link{font-size:.92rem; display:inline-block; margin-top:.6em}
 
-  .story{margin:14px 0 4px}
-  .story-row{display:flex; gap:14px; padding:7px 0}
+  .story{margin:20px auto 4px}
+  .story-row{display:flex; gap:22px; padding:13px 0}
   .story-row + .story-row{border-top:1px solid var(--line)}
   .story-row dt{
-    flex:0 0 78px; padding-top:.1em; font-weight:700; font-size:.76rem; letter-spacing:.03em;
+    flex:0 0 96px; padding-top:.1em; font-weight:700; font-size:.82rem; letter-spacing:.05em;
     color:var(--ink); font-variant-caps:small-caps; -webkit-font-feature-settings:"smcp" 1; font-feature-settings:"smcp" 1;
   }
-  .story-row dd{flex:1; font-size:.95rem; color:var(--ink-soft); line-height:1.5}
+  .story-row dd{flex:1; font-size:1.05rem; color:var(--ink-soft); line-height:1.6}
   .story-row.result dd{color:var(--ink)}
 
-  .achievements{list-style:none; margin:14px 0 4px; padding:0}
+  .achievements{list-style:none; margin:20px auto 4px; padding:0}
   .achievements li{
-    position:relative; padding-left:1.15em; margin-bottom:.55em;
-    font-size:.95rem; color:var(--ink-soft); line-height:1.5;
+    position:relative; padding-left:1.15em; margin-bottom:.6em;
+    font-size:1.05rem; color:var(--ink-soft); line-height:1.6;
   }
   .achievements li:last-child{margin-bottom:0}
   .achievements li::before{content:"–"; position:absolute; left:0; color:var(--ink-faint)}
 
-  .entry-figure{margin:16px 0 20px}
+  .entry-figure{
+    margin:28px auto; max-width:var(--figure-w);
+  }
   .entry-figure img, .entry-figure video{
-    width:100%; display:block; border:1px solid var(--line);
+    width:100%; display:block; border:1px solid var(--line); border-radius:2px;
+    box-shadow:var(--shadow);
     filter:saturate(.5) contrast(1.05) brightness(1.02);
   }
   .entry-figure figcaption{
-    font-style:italic; font-size:.82rem; color:var(--ink-soft); text-align:center; margin-top:8px;
+    font-style:italic; font-size:.82rem; color:var(--ink-soft); text-align:center; margin-top:10px;
   }
 
   .figure-contain{text-align:center}
   .figure-contain img{
-    width:auto; max-width:100%; height:auto; max-height:280px;
+    width:auto; max-width:100%; height:auto; max-height:480px;
     margin:0 auto; object-fit:contain;
   }
 
+  /* Hero media (e.g. the AHRS demo video) — the widest, most prominent
+     figure on a project card. */
   .video-feature{
-    width:100vw; max-width:960px; position:relative; left:50%; transform:translateX(-50%);
+    max-width:var(--hero-w);
   }
 
   .img-placeholder{
@@ -159,8 +179,8 @@
   }
 
   .entry-carousel{
-    position:relative; margin:16px 0 20px; border:1px solid var(--line);
-    overflow:hidden; background:#000;
+    position:relative; margin:28px auto; max-width:var(--figure-w); border:1px solid var(--line);
+    border-radius:2px; overflow:hidden; background:#000; box-shadow:var(--shadow);
   }
   .carousel-track{position:relative; aspect-ratio:16/10; cursor:pointer}
   .carousel-slide{
@@ -205,9 +225,9 @@
     font-size:.8rem; letter-spacing:.05em; color:var(--ink-soft); margin-bottom:4px;
     font-variant-caps:small-caps; -webkit-font-feature-settings:"smcp" 1; font-feature-settings:"smcp" 1;
   }
-  .skills dd{font-size:.98rem}
+  .skills dd{font-size:1.08rem; line-height:1.6}
 
-  .edu-facts{display:flex; flex-wrap:wrap; gap:6px 22px; margin:14px 0 6px; font-size:.95rem; color:var(--ink-soft)}
+  .edu-facts{display:flex; flex-wrap:wrap; gap:6px 22px; margin:14px auto 6px; font-size:1.02rem; color:var(--ink-soft)}
   .edu-facts b{color:var(--ink); font-weight:600}
 
   /* ---------- CONTACT ---------- */
@@ -329,7 +349,7 @@
         <h3>Strapdown IMU AHRS — Attitude &amp; Heading Reference System</h3>
         <span class="entry-time">Embedded · Sensor Fusion</span>
       </div>
-      <figure class="entry-figure">
+      <figure class="entry-figure video-feature">
         <video controls preload="metadata">
           <source src="img/ahrs-demo.mp4" type="video/mp4">
         </video>
