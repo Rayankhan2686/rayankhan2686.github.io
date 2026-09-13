@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Rayan Khan — Mechanical Engineering</title>
-<meta name="description" content="Rayan Khan — Mechanical Engineering student at Rutgers University. Undergraduate CFD researcher building physics-first simulation tools." />
+<title>Rayan Khan | Mechanical Engineering</title>
+<meta name="description" content="Rayan Khan: Mechanical Engineering student at Rutgers University. Undergraduate CFD researcher building physics-first simulation tools." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,7 +61,6 @@
   /* Text-bearing elements are constrained to a comfortable reading measure
      and centered, independent of how wide the page container is; figures
      and carousels (below) are allowed to run wider. */
-  .home-top, .home-center, .home-bottom,
   .tab > p, .tab h3.sub,
   .entry-head, .entry-org, .entry p, .entry-tags, .entry-link,
   .story, .achievements,
@@ -73,35 +72,62 @@
   .tab.active{display:block; animation:fade .5s ease}
   @keyframes fade{from{opacity:0} to{opacity:1}}
 
-  /* ---------- HOME ---------- */
-  #home.tab.active{
-    display:flex; flex-direction:column; justify-content:space-between;
-    min-height:calc(100svh - 77px); padding:44px 0 56px;
-  }
-  .home-top, .home-center, .home-bottom{width:100%}
-  .home-top{text-align:center}
-  .home-top .uni{
+  /* ---------- HOME / HERO ---------- */
+  #home.tab{padding:52px 0 72px}
+  .hero{text-align:center; padding-bottom:12px}
+  .hero .uni{
     font-family:var(--display); font-weight:600; font-size:clamp(1.35rem,5vw,1.75rem);
     letter-spacing:.01em;
   }
-  .home-top .uni-sub{
+  .hero .uni-sub{
     margin-top:6px; font-size:.92rem; color:var(--ink-soft); letter-spacing:.02em;
   }
-  @media(min-width:640px){ .home-top{text-align:right} }
-
-  .home-center{text-align:center; padding:40px 0}
-  .home-center .name{
-    font-family:var(--display); font-weight:600; line-height:1;
+  .hero .name{
+    font-family:var(--display); font-weight:600; line-height:1; margin-top:36px;
     font-size:clamp(2.5rem,11vw,3.9rem); letter-spacing:.04em;
     font-variant-caps:small-caps; -webkit-font-feature-settings:"smcp" 1; font-feature-settings:"smcp" 1;
   }
-  .home-center .email{
-    display:block; margin-top:16px; font-size:1rem; color:var(--ink-soft); letter-spacing:.02em;
+  .hero .tagline{
+    margin-top:14px; font-size:1.05rem; letter-spacing:.06em; color:var(--ink);
+    font-variant-caps:small-caps; -webkit-font-feature-settings:"smcp" 1; font-feature-settings:"smcp" 1;
   }
-  .home-center .email:hover{color:var(--ink)}
+  .hero .positioning{
+    max-width:var(--measure); margin:14px auto 0; font-size:1.1rem; color:var(--ink-soft); line-height:1.6;
+  }
+  .hero-cta{display:flex; flex-wrap:wrap; justify-content:center; gap:14px; margin-top:28px}
+  .btn{
+    display:inline-block; padding:11px 26px; font-family:var(--body); font-size:.92rem;
+    letter-spacing:.04em; text-decoration:none; border:1px solid var(--ink); border-radius:2px;
+  }
+  .btn-primary{background:var(--ink); color:var(--bg)}
+  .btn-primary:hover{background:transparent; color:var(--ink); text-decoration:none}
+  .btn-secondary{background:transparent; color:var(--ink)}
+  .btn-secondary:hover{background:var(--ink); color:var(--bg); text-decoration:none}
 
-  .home-bottom{text-align:center; font-size:.94rem; color:var(--ink-soft); letter-spacing:.01em}
-  .home-bottom .resume-link{color:var(--ink); font-weight:700; text-decoration-color:rgba(17,17,17,.4)}
+  .quick-links{
+    margin-top:22px; font-size:.9rem; color:var(--ink-soft); letter-spacing:.01em;
+  }
+
+  .bio{max-width:var(--measure); margin:44px auto 0; font-size:1.1rem; line-height:1.6; text-align:center}
+
+  .chip-row{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:9px;
+    max-width:var(--measure); margin:20px auto 0;
+  }
+  .chip{
+    font-size:.8rem; padding:5px 12px; border:1px solid var(--line); border-radius:3px;
+    color:var(--ink-soft); letter-spacing:.02em; white-space:nowrap;
+  }
+  .chip-row.left{justify-content:flex-start}
+
+  .section-lead{
+    max-width:var(--measure); margin:64px auto 0; text-align:center;
+  }
+  .section-lead h2{
+    font-family:var(--display); font-weight:600; font-size:clamp(1.4rem,5vw,1.8rem);
+    letter-spacing:.03em; font-variant-caps:small-caps;
+    -webkit-font-feature-settings:"smcp" 1; font-feature-settings:"smcp" 1;
+  }
 
   /* ---------- TAB CONTENT ---------- */
   .tab{padding:56px 0 72px}
@@ -120,7 +146,7 @@
   .entry{padding-top:40px; margin-top:40px; border-top:1px solid var(--line)}
   .entry:first-of-type{padding-top:0; margin-top:0; border-top:none}
   .entry-head{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:6px 16px}
-  .entry-head h3{font-family:var(--display); font-weight:600; font-size:1.28rem; letter-spacing:.01em}
+  .entry-head h3, .entry-head h4{font-family:var(--display); font-weight:600; font-size:1.28rem; letter-spacing:.01em}
   .entry-time{
     font-size:.82rem; color:var(--ink-soft); white-space:nowrap; letter-spacing:.04em;
     font-variant-caps:small-caps; -webkit-font-feature-settings:"smcp" 1; font-feature-settings:"smcp" 1;
@@ -129,6 +155,67 @@
   .entry p{font-size:1.12rem; margin-bottom:.6em; line-height:1.6}
   .entry-tags{font-style:italic; color:var(--ink-soft); font-size:.92rem; margin-top:.8em}
   .entry-link{font-size:.92rem; display:inline-block; margin-top:.6em}
+
+  /* ---------- PROJECT PAGE HEADER (eyebrow / stat tiles) ---------- */
+  .eyebrow{
+    font-size:.85rem; letter-spacing:.08em; color:var(--ink-soft); text-align:center;
+    font-variant-caps:small-caps; -webkit-font-feature-settings:"smcp" 1; font-feature-settings:"smcp" 1;
+  }
+  .project-title{
+    font-family:var(--display); font-weight:600; text-align:center;
+    font-size:clamp(1.8rem,6vw,2.4rem); letter-spacing:.02em; margin-top:8px;
+  }
+  .project-summary{
+    max-width:var(--measure); margin:16px auto 0; font-size:1.14rem; color:var(--ink-soft);
+    line-height:1.6; text-align:center;
+  }
+  .project-org{
+    max-width:var(--measure); margin:10px auto 0; font-style:italic; color:var(--ink-soft);
+    text-align:center; font-size:1rem;
+  }
+
+  .stat-tiles{
+    display:flex; max-width:var(--measure); margin:32px auto 0;
+    border-top:1px solid var(--ink); border-bottom:1px solid var(--line);
+  }
+  .stat-tile{
+    flex:1; text-align:center; padding:18px 8px; border-left:1px solid var(--line);
+  }
+  .stat-tile:first-child{border-left:none}
+  .stat-num{
+    font-family:var(--display); font-weight:600; font-size:clamp(1.5rem,5vw,2rem); color:var(--ink);
+  }
+  .stat-label{
+    margin-top:6px; font-size:.74rem; letter-spacing:.04em; color:var(--ink-soft); line-height:1.4;
+    font-variant-caps:small-caps; -webkit-font-feature-settings:"smcp" 1; font-feature-settings:"smcp" 1;
+  }
+
+  /* ---------- FLAGSHIP PREVIEW CARDS (Home) ---------- */
+  .flagship-card{
+    max-width:var(--figure-w); margin:36px auto 0; padding:32px clamp(16px,4vw,40px);
+    border:1px solid var(--line); border-radius:2px;
+  }
+  .flagship-card .stat-tiles{margin-top:22px}
+  .flagship-card .project-title{font-size:clamp(1.4rem,5vw,1.7rem)}
+  .flagship-card .project-summary{font-size:1.02rem; margin-top:10px}
+  .flagship-card .chip-row{margin-top:18px}
+  .flagship-card .entry-link{display:block; text-align:center; margin-top:18px}
+
+  /* ---------- ADDITIONAL-PROJECTS GRID (Home teaser + grid tab) ---------- */
+  .project-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+    gap:28px; max-width:var(--maxw); margin:36px auto 0;
+  }
+  .grid-card{border:1px solid var(--line); border-radius:2px; overflow:hidden}
+  .grid-card img{
+    width:100%; aspect-ratio:16/10; object-fit:cover; display:block;
+    filter:saturate(.5) contrast(1.05) brightness(1.02);
+  }
+  .grid-card-body{padding:18px 20px 22px}
+  .grid-card h3{font-family:var(--display); font-weight:600; font-size:1.1rem}
+  .grid-card p{font-size:.92rem; color:var(--ink-soft); margin-top:6px; line-height:1.5}
+  .grid-card .chip-row{justify-content:flex-start; margin:12px 0 0}
+  .grid-card .entry-link{margin-top:12px}
 
   .story{margin:20px auto 4px}
   .story-row{display:flex; gap:22px; padding:13px 0}
@@ -259,10 +346,10 @@
 
 <nav class="site-nav" id="siteNav">
   <a href="#home" data-tab="home">Home</a>
-  <a href="#about" data-tab="about">About</a>
-  <a href="#experience" data-tab="experience">Experience</a>
-  <a href="#projects" data-tab="projects">Projects</a>
-  <a href="#leadership" data-tab="leadership">Leadership</a>
+  <a href="#ahrs" data-tab="ahrs">Strapdown AHRS</a>
+  <a href="#cfd" data-tab="cfd">CFD Research</a>
+  <a href="#additional" data-tab="additional">Additional Projects</a>
+  <a href="#resume" data-tab="resume">Resume</a>
   <a href="#contact" data-tab="contact">Contact</a>
 </nav>
 
@@ -270,123 +357,232 @@
 
   <!-- ================= HOME ================= -->
   <section id="home" class="tab active">
-    <div class="home-top">
+    <div class="hero">
       <div class="uni">Rutgers University</div>
       <div class="uni-sub">Mechanical Engineering | GPA: 3.54/4.00</div>
-    </div>
 
-    <div class="home-center">
       <h1 class="name">Rayan Khan</h1>
-      <a class="email" href="mailto:khanrayan2686@gmail.com">khanrayan2686@gmail.com</a>
-    </div>
+      <p class="tagline">Controls · Embedded · Aerospace</p>
+      <p class="positioning">Mechanical engineering student building embedded sensor-fusion and CFD simulation tools. Seeking 2026 controls, embedded, and aerospace internships.</p>
 
-    <p class="home-bottom">Columbus, NJ&nbsp;| CFD Research @ Rutgers&nbsp;| AIAA Design/Build/Fly&nbsp;| <a class="resume-link" href="Rayan_Khan_Resume_2026.pdf" target="_blank">Resume</a></p>
-  </section>
-
-  <!-- ================= ABOUT ================= -->
-  <section id="about" class="tab">
-    <h2>About</h2>
-    <p>I'm a mechanical engineering student at Rutgers University — a double major in Mechanical and Aerospace Engineering — focused on aerodynamics, controls, and computational simulation. I build physics-first engineering tools from scratch, including CFD pipelines, orbital propagators, and finite-element solvers, because I care about understanding the math behind every line of code, not just running the library. I'm currently targeting mechanical, aerospace, and defense internships in research, design, and simulation roles.</p>
-
-    <h3 class="sub">Education</h3>
-    <p><b>B.S. Mechanical Engineering</b> (double major, Aerospace Engineering)<br>Rutgers University — New Brunswick</p>
-    <div class="edu-facts">
-      <span><b>3.54</b> GPA</span>
-      <span><b>May 2028</b> Expected</span>
-      <span><b>Dean's List</b></span>
-    </div>
-    <p style="font-size:.95rem; color:var(--ink-soft)">Relevant coursework: Thermodynamics · Fluid Mechanics · Dynamic Systems &amp; Controls</p>
-
-    <h3 class="sub">Skills</h3>
-    <dl class="skills">
-      <div><dt>Languages</dt><dd>Python, C++, C, MATLAB, Bash</dd></div>
-      <div><dt>Simulation &amp; Analysis</dt><dd>OpenFOAM, ANSYS Fluent, ParaView, XFOIL, gmsh, FEA / FEM, RK45, k-ω SST RANS, blockMesh</dd></div>
-      <div><dt>Engineering Domains</dt><dd>Aerodynamics, CFD, Orbital mechanics, Structures, Control (PID), Sensor fusion, Computer vision, Embedded / real-time</dd></div>
-      <div><dt>Tools &amp; Libraries</dt><dd>NumPy, SciPy, pandas, OpenCV, YOLOv8, Streamlit, SQLite / SQL, pytest, ArduPilot / PX4 SITL, SolidWorks, Fusion 360, Git / GitHub, Linux / WSL2</dd></div>
-    </dl>
-  </section>
-
-  <!-- ================= EXPERIENCE ================= -->
-  <section id="experience" class="tab">
-    <h2>Experience</h2>
-    <article class="entry">
-      <div class="entry-head">
-        <h3>Undergraduate Researcher</h3>
-        <span class="entry-time">Oct 2025 – Present</span>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#flagship-projects">View Projects</a>
+        <a class="btn btn-secondary" href="#contact">Contact</a>
       </div>
-      <div class="entry-org">Rutgers University — Low-Reynolds-Number Aerodynamics Lab</div>
-      <figure class="entry-figure figure-contain">
-        <img src="img/cfd-airfoil-pressure.png" alt="ParaView pressure-field render of a NACA 0012 airfoil at 9 degrees angle of attack" loading="lazy">
-        <figcaption>Pressure field around a NACA 0012 airfoil at 9° angle of attack, rendered in ParaView (Re = 2×10⁵).</figcaption>
-      </figure>
-      <figure class="entry-figure">
-        <img src="img/cfd-xfoil-deltacl.png" alt="Lift-coefficient deficit between XFOIL and OpenFOAM versus angle of attack for NACA 0012, 2412, and 4412 at Re = 2 times 10 to the 5th" loading="lazy" class="fallback-img">
+
+      <p class="quick-links">
+        <a href="Rayan_Khan_Resume_2026.pdf" target="_blank">Resume</a>
+        &nbsp;·&nbsp;<a href="https://github.com/rayankhan2686" target="_blank">GitHub</a>
+        &nbsp;·&nbsp;<a href="https://www.linkedin.com/in/rayan-khan-58682a32a" target="_blank">LinkedIn</a>
+        &nbsp;·&nbsp;<a href="mailto:khanrayan2686@gmail.com">Email</a>
+      </p>
+    </div>
+
+    <p class="bio">I build physics-first engineering tools from scratch: CFD pipelines, sensor-fusion filters, and finite-element solvers. I want to understand the math behind every line of code, not just run the library. Based in Columbus, NJ.</p>
+
+    <div class="chip-row">
+      <span class="chip">Aerodynamics</span>
+      <span class="chip">CFD</span>
+      <span class="chip">Sensor Fusion</span>
+      <span class="chip">Control (PID)</span>
+      <span class="chip">Embedded / Real-Time</span>
+      <span class="chip">Orbital Mechanics</span>
+      <span class="chip">Structures</span>
+    </div>
+
+    <div class="section-lead" id="flagship-projects">
+      <h2>Flagship Projects</h2>
+    </div>
+
+    <article class="flagship-card">
+      <div class="eyebrow">Embedded · Sensor Fusion · Complete</div>
+      <h3 class="project-title">Strapdown IMU AHRS</h3>
+      <p class="project-summary">A 3D attitude and heading reference system built from scratch, running the same filter code on synthetic data, recorded logs, and a live ESP32 sensor.</p>
+      <div class="stat-tiles">
+        <div class="stat-tile"><div class="stat-num">1200×</div><div class="stat-label">Drift Reduction vs. Raw Gyro</div></div>
+        <div class="stat-tile"><div class="stat-num">0.25° RMS</div><div class="stat-label">Attitude Error, 10-Min Run</div></div>
+        <div class="stat-tile"><div class="stat-num">32/32</div><div class="stat-label">Tests Passing</div></div>
+      </div>
+      <div class="chip-row">
+        <span class="chip">C++</span><span class="chip">Python</span><span class="chip">ESP32</span><span class="chip">ICM-20948</span>
+      </div>
+      <a class="entry-link" href="#ahrs" data-tab="ahrs">View Project →</a>
+    </article>
+
+    <article class="flagship-card">
+      <div class="eyebrow">CFD · Aerodynamics Research · Ongoing</div>
+      <h3 class="project-title">Camber Effects on Airfoil Aerodynamics</h3>
+      <p class="project-summary">An OpenFOAM and Python pipeline studying how camber affects lift, drag, and stall on three NACA airfoils at Re = 2×10⁵.</p>
+      <div class="stat-tiles">
+        <div class="stat-tile"><div class="stat-num">87+</div><div class="stat-label">RANS Simulations Run</div></div>
+        <div class="stat-tile"><div class="stat-num">~4%</div><div class="stat-label">Mean Error vs. XFOIL</div></div>
+        <div class="stat-tile"><div class="stat-num">5×</div><div class="stat-label">Cl Correction, Mesh Fix</div></div>
+      </div>
+      <div class="chip-row">
+        <span class="chip">OpenFOAM</span><span class="chip">Python</span><span class="chip">ParaView</span><span class="chip">XFOIL</span>
+      </div>
+      <a class="entry-link" href="#cfd" data-tab="cfd">View Project →</a>
+    </article>
+
+    <div class="section-lead">
+      <h2>Additional Projects</h2>
+    </div>
+
+    <div class="project-grid">
+      <div class="grid-card">
+        <img src="img/rocket-launch-simulator.jpg" alt="The Arduino-based launch-abort system breadboard, with LCD readout" loading="lazy">
+        <div class="grid-card-body">
+          <h3>Rocket Launch Safety Simulator</h3>
+          <p>Arduino-based launch-abort system with real-time sensor fusion and fail-safe logic.</p>
+          <div class="chip-row"><span class="chip">Arduino</span><span class="chip">C++</span><span class="chip">Embedded</span></div>
+          <a class="entry-link" href="#additional" data-tab="additional">View Project →</a>
+        </div>
+      </div>
+      <div class="grid-card">
+        <img src="img/orbital-propagator.png" alt="3D visualization of ISS, Molniya, and GEO orbits computed by the propagator" loading="lazy">
+        <div class="grid-card-body">
+          <h3>Two-Body Orbital Propagator</h3>
+          <p>Orbital propagator with J2 perturbations, validated to 0.4% against analytical theory.</p>
+          <div class="chip-row"><span class="chip">Python</span><span class="chip">SciPy</span><span class="chip">RK45</span></div>
+          <a class="entry-link" href="#additional" data-tab="additional">View Project →</a>
+        </div>
+      </div>
+      <div class="grid-card">
+        <img src="img/pyfea-2.png" alt="pyFEA 3D result viewer, von Mises stress on an L-bracket with load arrow" loading="lazy" class="fallback-img">
         <div class="img-placeholder">Image coming soon</div>
-        <figcaption>ΔCl (XFOIL − OpenFOAM) vs. angle of attack, all three airfoils — the deficit stays small in attached flow and widens past stall onset.</figcaption>
-      </figure>
-      <dl class="story">
-        <div class="story-row"><dt>Problem</dt><dd>Quantify how camber (NACA 0012/2412/4412) affects lift, drag, and stall behavior at Re = 2×10⁵, building the full OpenFOAM/Python pipeline — meshing through post-processing — from scratch instead of treating the solver as a black box.</dd></div>
-        <div class="story-row"><dt>Approach</dt><dd>Automated an OpenFOAM/Python pipeline (STL generation → blockMesh → simpleFoam with k-ω SST → force-coefficient extraction) and ran 87+ steady RANS cases across a −4° to 20° angle-of-attack sweep at 0.5° resolution near stall, checking every result against XFOIL and a dedicated mesh-independence study rather than trusting a single mesh.</dd></div>
-        <div class="story-row"><dt>Tradeoffs</dt><dd>An early mesh used snappyHexMesh, which refines cells in all three directions near the airfoil surface — silently splitting the single spanwise cell into two even though the case was meant to be strictly 2D. The defect didn't crash the solver or show up in residuals; it surfaced only as OpenFOAM's checkMesh flagging the mesh "not 1D or 2D." Before trusting that diagnosis, I ruled out the more common suspects one at a time — force-direction vectors, reference area, a mis-read results column, degenerate STL geometry — all confirmed correct against the case's own log files. That process of elimination pointed at the mesh itself. I rejected two cheaper patches (thickening the span to dilute the z-split; excluding a snappyHexMesh refinement region near the surface) as unreliable, and instead rebuilt meshing around blockMesh's <code>project</code> feature — following the compressible/rhoSimpleFoam/aerofoilNACA0012 tutorial pattern — to snap block vertices directly onto the airfoil surface with a guaranteed single-cell span.</dd></div>
-        <div class="story-row result"><dt>Results</dt><dd>The corrected mesh raised Cl at α = 6° from 0.109 to 0.583 (below) — consistent with thin-airfoil theory — and the full sweep validated to within roughly 4% of XFOIL for attached flow (α = −4° to 7°). A follow-up mesh-independence study found α ≥ 8° does not converge under refinement — Cl and Cd reverse trend direction rather than shrink across four mesh tiers — so that range is flagged as unreliable and excluded rather than reported as clean data.</dd></div>
-        <div class="story-row"><dt>Next</dt><dd>Preparing these results for an AIAA SciTech publication.</dd></div>
-      </dl>
-      <ul class="achievements">
-        <li>Before (snappyHexMesh, non-2D mesh — checkMesh flagged): Cl = 0.109 at α = 6°.</li>
-        <li>After (blockMesh C-grid, verified 2D): Cl = 0.583 at α = 6° — roughly a 5× correction.</li>
-      </ul>
-      <p class="entry-tags">OpenFOAM, Python, ParaView, XFOIL, blockMesh</p>
-      <a class="entry-link" href="https://github.com/rayankhan2686/naca-airfoil-cfd" target="_blank">View on GitHub →</a>
-    </article>
+        <div class="grid-card-body">
+          <h3>pyFEA</h3>
+          <p>3D finite-element solver built from scratch in Python, validated against classical benchmarks.</p>
+          <div class="chip-row"><span class="chip">Python</span><span class="chip">gmsh</span><span class="chip">PyVista</span></div>
+          <a class="entry-link" href="#additional" data-tab="additional">View Project →</a>
+        </div>
+      </div>
+      <div class="grid-card">
+        <img src="img/robot-cad-assembly.png" alt="CAD assembly view of the robot enclosure redesign" loading="lazy" class="fallback-img">
+        <div class="img-placeholder">Image coming soon</div>
+        <div class="grid-card-body">
+          <h3>Autonomous Delivery Robot</h3>
+          <p>Curb-climbing enclosure redesign for a sidewalk delivery robot, modeled as a full SolidWorks assembly.</p>
+          <div class="chip-row"><span class="chip">SolidWorks</span></div>
+          <a class="entry-link" href="#additional" data-tab="additional">View Project →</a>
+        </div>
+      </div>
+      <div class="grid-card">
+        <img src="img/tracker-dashboard.png" alt="Ranked results / tracker view" loading="lazy" class="fallback-img">
+        <div class="img-placeholder">Image coming soon</div>
+        <div class="grid-card-body">
+          <h3>Internship Application Tracker</h3>
+          <p>Internship search tool that aggregates and ranks 75+ companies using the Claude API.</p>
+          <div class="chip-row"><span class="chip">Python</span><span class="chip">SQLite</span><span class="chip">Claude API</span></div>
+          <a class="entry-link" href="#additional" data-tab="additional">View Project →</a>
+        </div>
+      </div>
+      <div class="grid-card">
+        <img src="img/IMG_0078_cropped.png" alt="Adaptive gait trainer, assembled frame" loading="lazy" class="fallback-img">
+        <div class="img-placeholder">Image coming soon</div>
+        <div class="grid-card-body">
+          <h3>Adaptive Pediatric Gait Trainer</h3>
+          <p>Custom adaptive gait trainer built for a child with a spinal impairment.</p>
+          <div class="chip-row"><span class="chip">SolidWorks</span><span class="chip">3D Printing</span></div>
+          <a class="entry-link" href="#additional" data-tab="additional">View Project →</a>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- ================= PROJECTS ================= -->
-  <section id="projects" class="tab">
-    <h2>Projects</h2>
+  <!-- ================= STRAPDOWN AHRS (flagship) ================= -->
+  <section id="ahrs" class="tab">
+    <div class="eyebrow">Embedded · Sensor Fusion · Complete</div>
+    <h2 class="project-title">Strapdown IMU AHRS</h2>
+    <p class="project-summary">A strapdown attitude and heading reference system built from scratch in Python and C++. Two fusion filters, a complementary filter and a quaternion-based Madgwick filter, run unchanged on synthetic data, recorded logs, and a live ESP32 and IMU. The complementary filter holds attitude to 0.25° RMS, a 1200× improvement over raw gyro integration.</p>
+    <div class="chip-row">
+      <span class="chip">C++</span><span class="chip">Python</span><span class="chip">ESP32 Feather V2</span><span class="chip">ICM-20948</span><span class="chip">pytest</span>
+    </div>
+    <div class="stat-tiles">
+      <div class="stat-tile"><div class="stat-num">1200×</div><div class="stat-label">Drift Reduction vs. Raw Gyro</div></div>
+      <div class="stat-tile"><div class="stat-num">0.25° RMS</div><div class="stat-label">Attitude Error, 10-Min Run</div></div>
+      <div class="stat-tile"><div class="stat-num">32/32</div><div class="stat-label">Tests Passing</div></div>
+    </div>
 
-    <article class="entry">
-      <div class="entry-head">
-        <h3>Strapdown IMU AHRS — Attitude &amp; Heading Reference System</h3>
-        <span class="entry-time">Embedded · Sensor Fusion</span>
-      </div>
-      <figure class="entry-figure video-feature">
-        <video controls preload="metadata">
-          <source src="img/ahrs-demo.mp4" type="video/mp4">
-        </video>
-        <figcaption>Live attitude estimate from the fusion filter</figcaption>
-      </figure>
-      <div class="entry-carousel carousel-wide" data-carousel>
-        <div class="carousel-track">
-          <div class="carousel-slide is-active">
-            <img src="img/ahrs-drift-test.png" alt="Drift test plot: gyro-only integration vs complementary filter vs ground truth over a 600 second static run" loading="lazy" class="fallback-img">
-            <div class="img-placeholder">Image coming soon</div>
-          </div>
-          <div class="carousel-slide">
-            <img src="img/ahrs-gimbal-lock-test.png" alt="Gimbal-lock test plot: Euler-based complementary filter vs quaternion-based Madgwick filter as true pitch ramps to 90 degrees" loading="lazy" class="fallback-img">
-            <div class="img-placeholder">Image coming soon</div>
-          </div>
-          <div class="carousel-slide">
-            <img src="img/ahrs-known-angle-test.png" alt="Known-angle test plot: fused roll estimate vs ground truth on a roll sweep from 0 to 45 to 0 degrees" loading="lazy" class="fallback-img">
-            <div class="img-placeholder">Image coming soon</div>
-          </div>
+    <figure class="entry-figure video-feature">
+      <video controls preload="metadata">
+        <source src="img/ahrs-demo.mp4" type="video/mp4">
+      </video>
+      <figcaption>Live attitude estimate from the fusion filter</figcaption>
+    </figure>
+    <div class="entry-carousel carousel-wide" data-carousel>
+      <div class="carousel-track">
+        <div class="carousel-slide is-active">
+          <img src="img/ahrs-drift-test.png" alt="Drift test plot: gyro-only integration vs complementary filter vs ground truth over a 600 second static run" loading="lazy" class="fallback-img">
+          <div class="img-placeholder">Image coming soon</div>
         </div>
-        <button class="carousel-btn prev" type="button" aria-label="Previous plot">‹</button>
-        <button class="carousel-btn next" type="button" aria-label="Next plot">›</button>
-        <div class="carousel-dots">
-          <button class="carousel-dot is-active" type="button" aria-label="Plot 1"></button>
-          <button class="carousel-dot" type="button" aria-label="Plot 2"></button>
-          <button class="carousel-dot" type="button" aria-label="Plot 3"></button>
+        <div class="carousel-slide">
+          <img src="img/ahrs-gimbal-lock-test.png" alt="Gimbal-lock test plot: Euler-based complementary filter vs quaternion-based Madgwick filter as true pitch ramps to 90 degrees" loading="lazy" class="fallback-img">
+          <div class="img-placeholder">Image coming soon</div>
+        </div>
+        <div class="carousel-slide">
+          <img src="img/ahrs-known-angle-test.png" alt="Known-angle test plot: fused roll estimate vs ground truth on a roll sweep from 0 to 45 to 0 degrees" loading="lazy" class="fallback-img">
+          <div class="img-placeholder">Image coming soon</div>
         </div>
       </div>
-      <dl class="story">
-        <div class="story-row"><dt>Problem</dt><dd>Estimate accurate 3D attitude and heading from noisy, drifting IMU sensors — raw gyro integration alone drifts hundreds of degrees over time.</dd></div>
-        <div class="story-row"><dt>Approach</dt><dd>An ESP32 Feather V2 with an ICM-20948 9-DoF IMU streams raw sensor data to a Python host running complementary and Madgwick fusion filters implemented from first principles; architected as "dumb firmware, smart host" with a transport-agnostic parser so the same filter code runs unchanged on a synthetic ground-truth generator, a recorded CSV, or a live UDP stream.</dd></div>
-        <div class="story-row"><dt>Tradeoffs</dt><dd>The nav frame is +Z-up (ENU-style), not the aerospace-standard NED, so a flat, stationary board reads accel ≈ [0, 0, +1] g directly — one less sign flip to get wrong when cross-checking real hardware. Both filters still use the standard ZYX yaw-pitch-roll (3-2-1) sequence. The bigger tradeoff is representation: the Tier-1 complementary filter fuses accelerometer and gyro directly in Euler angles, which is simple but degenerate near ±90° pitch, where roll and yaw lose their distinction. Driving true pitch to 90° in the ground-truth simulator confirms it — the Euler-based filter's error grows to 1.54° near the pole, while the quaternion-based Madgwick filter, whose internal state never passes through that coordinate singularity, stays at 0.65° max error over the same maneuver. That measured comparison, not intuition, is why the Tier-2 filter is quaternion-based rather than a refined Euler filter.</dd></div>
-        <div class="story-row result"><dt>Results</dt><dd>Over a 600 s static run with a 0.5°/s gyro bias, the complementary filter holds attitude to ~0.25° RMS versus ~300° of raw gyro-only drift — roughly a 1200× improvement. On a known-angle roll sweep (0°→45°→0°) it tracks true roll to ~0.12° RMS after a 1 s startup transient. Validated by a 32/32 passing test suite covering parsing, the simulator, both filters, the UDP transport, and the visualization geometry.</dd></div>
-      </dl>
-      <p class="entry-tags">C++, Python, ESP32, embedded</p>
-      <a class="entry-link" href="https://github.com/rayankhan2686/strapdown-ahrs" target="_blank">View on GitHub →</a>
-    </article>
+      <button class="carousel-btn prev" type="button" aria-label="Previous plot">‹</button>
+      <button class="carousel-btn next" type="button" aria-label="Next plot">›</button>
+      <div class="carousel-dots">
+        <button class="carousel-dot is-active" type="button" aria-label="Plot 1"></button>
+        <button class="carousel-dot" type="button" aria-label="Plot 2"></button>
+        <button class="carousel-dot" type="button" aria-label="Plot 3"></button>
+      </div>
+    </div>
+    <dl class="story">
+      <div class="story-row"><dt>Problem</dt><dd>Estimate accurate 3D attitude and heading from noisy, drifting IMU sensors. Raw gyro integration alone drifts hundreds of degrees over time.</dd></div>
+      <div class="story-row"><dt>Approach</dt><dd>An ESP32 Feather V2 with an ICM-20948 9-DoF IMU streams raw sensor data to a Python host running complementary and Madgwick fusion filters implemented from first principles; architected as "dumb firmware, smart host" with a transport-agnostic parser so the same filter code runs unchanged on a synthetic ground-truth generator, a recorded CSV, or a live UDP stream.</dd></div>
+      <div class="story-row"><dt>Tradeoffs</dt><dd>The nav frame is +Z-up (ENU-style), not the aerospace-standard NED, so a flat, stationary board reads accel ≈ [0, 0, +1] g directly, one less sign flip to get wrong when cross-checking real hardware. Both filters still use the standard ZYX yaw-pitch-roll (3-2-1) sequence. The bigger tradeoff is representation: the Tier-1 complementary filter fuses accelerometer and gyro directly in Euler angles, which is simple but degenerate near ±90° pitch, where roll and yaw lose their distinction. Driving true pitch to 90° in the ground-truth simulator confirms it: the Euler-based filter's error grows to 1.54° near the pole, while the quaternion-based Madgwick filter, whose internal state never passes through that coordinate singularity, stays at 0.65° max error over the same maneuver. That measured comparison, not intuition, is why the Tier-2 filter is quaternion-based rather than a refined Euler filter.</dd></div>
+      <div class="story-row result"><dt>Results</dt><dd>Over a 600 s static run with a 0.5°/s gyro bias, the complementary filter holds attitude to ~0.25° RMS versus ~300° of raw gyro-only drift, roughly a 1200× improvement. On a known-angle roll sweep (0°→45°→0°) it tracks true roll to ~0.12° RMS after a 1 s startup transient. Validated by a 32/32 passing test suite covering parsing, the simulator, both filters, the UDP transport, and the visualization geometry.</dd></div>
+    </dl>
+    <a class="entry-link" href="https://github.com/rayankhan2686/strapdown-ahrs" target="_blank">View on GitHub →</a>
+  </section>
+
+  <!-- ================= CFD RESEARCH (flagship) ================= -->
+  <section id="cfd" class="tab">
+    <div class="eyebrow">CFD · Aerodynamics Research · Ongoing</div>
+    <h2 class="project-title">Camber Effects on Airfoil Aerodynamics</h2>
+    <p class="project-summary">An OpenFOAM and Python pipeline studying how camber affects lift, drag, and stall on NACA 0012, 2412, and 4412 airfoils at Re = 2×10⁵. Built from mesh generation through post-processing and validated against XFOIL across 87+ RANS simulations. A meshing defect that silently corrupted early results was traced and fixed, correcting the lift coefficient by roughly 5×.</p>
+    <p class="project-org">Rutgers University, Low-Reynolds-Number Aerodynamics Lab. Undergraduate Researcher, Oct 2025 to present.</p>
+    <div class="chip-row">
+      <span class="chip">OpenFOAM</span><span class="chip">Python</span><span class="chip">ParaView</span><span class="chip">XFOIL</span><span class="chip">blockMesh</span>
+    </div>
+    <div class="stat-tiles">
+      <div class="stat-tile"><div class="stat-num">87+</div><div class="stat-label">RANS Simulations Run</div></div>
+      <div class="stat-tile"><div class="stat-num">~4%</div><div class="stat-label">Mean Error vs. XFOIL</div></div>
+      <div class="stat-tile"><div class="stat-num">5×</div><div class="stat-label">Cl Correction, Mesh Fix</div></div>
+    </div>
+
+    <figure class="entry-figure figure-contain">
+      <img src="img/cfd-airfoil-pressure.png" alt="ParaView pressure-field render of a NACA 0012 airfoil at 9 degrees angle of attack" loading="lazy">
+      <figcaption>Pressure field around a NACA 0012 airfoil at 9° angle of attack, rendered in ParaView (Re = 2×10⁵).</figcaption>
+    </figure>
+    <figure class="entry-figure">
+      <img src="img/cfd-xfoil-deltacl.png" alt="Lift-coefficient deficit between XFOIL and OpenFOAM versus angle of attack for NACA 0012, 2412, and 4412 at Re = 2 times 10 to the 5th" loading="lazy" class="fallback-img">
+      <div class="img-placeholder">Image coming soon</div>
+      <figcaption>ΔCl (XFOIL − OpenFOAM) vs. angle of attack, all three airfoils. The deficit stays small in attached flow and widens past stall onset.</figcaption>
+    </figure>
+    <dl class="story">
+      <div class="story-row"><dt>Problem</dt><dd>Quantify how camber (NACA 0012/2412/4412) affects lift, drag, and stall behavior at Re = 2×10⁵, building the full OpenFOAM/Python pipeline (meshing through post-processing) from scratch instead of treating the solver as a black box.</dd></div>
+      <div class="story-row"><dt>Approach</dt><dd>Automated an OpenFOAM/Python pipeline (STL generation → blockMesh → simpleFoam with k-ω SST → force-coefficient extraction) and ran 87+ steady RANS cases across a −4° to 20° angle-of-attack sweep at 0.5° resolution near stall, checking every result against XFOIL and a dedicated mesh-independence study rather than trusting a single mesh.</dd></div>
+      <div class="story-row"><dt>Tradeoffs</dt><dd>An early mesh used snappyHexMesh, which refines cells in all three directions near the airfoil surface, silently splitting the single spanwise cell into two even though the case was meant to be strictly 2D. The defect didn't crash the solver or show up in residuals; it surfaced only as OpenFOAM's checkMesh flagging the mesh "not 1D or 2D." Before trusting that diagnosis, I ruled out the more common suspects one at a time: force-direction vectors, reference area, a mis-read results column, degenerate STL geometry, all confirmed correct against the case's own log files. That process of elimination pointed at the mesh itself. I rejected two cheaper patches (thickening the span to dilute the z-split; excluding a snappyHexMesh refinement region near the surface) as unreliable, and instead rebuilt meshing around blockMesh's <code>project</code> feature (following the compressible/rhoSimpleFoam/aerofoilNACA0012 tutorial pattern) to snap block vertices directly onto the airfoil surface with a guaranteed single-cell span.</dd></div>
+      <div class="story-row result"><dt>Results</dt><dd>The corrected mesh raised Cl at α = 6° from 0.109 to 0.583 (below), consistent with thin-airfoil theory, and the full sweep validated to within roughly 4% of XFOIL for attached flow (α = −4° to 7°). A follow-up mesh-independence study found α ≥ 8° does not converge under refinement: Cl and Cd reverse trend direction rather than shrink across four mesh tiers, so that range is flagged as unreliable and excluded rather than reported as clean data.</dd></div>
+      <div class="story-row"><dt>Next</dt><dd>Preparing these results for an AIAA SciTech publication.</dd></div>
+    </dl>
+    <ul class="achievements">
+      <li>Before (snappyHexMesh, non-2D mesh, checkMesh flagged): Cl = 0.109 at α = 6°.</li>
+      <li>After (blockMesh C-grid, verified 2D): Cl = 0.583 at α = 6°, roughly a 5× correction.</li>
+    </ul>
+    <a class="entry-link" href="https://github.com/rayankhan2686/naca-airfoil-cfd" target="_blank">View on GitHub →</a>
+  </section>
+
+  <!-- ================= ADDITIONAL PROJECTS ================= -->
+  <section id="additional" class="tab">
+    <h2>Additional Projects</h2>
 
     <article class="entry">
       <div class="entry-head">
@@ -400,10 +596,10 @@
       <figure class="entry-figure">
         <img src="img/orbital-j2-comparison.png" alt="J2 perturbation comparison for the ISS orbit over 5 days: nodal regression, apsidal precession, inclination, and altitude, Keplerian vs J2-perturbed" loading="lazy" class="fallback-img">
         <div class="img-placeholder">Image coming soon</div>
-        <figcaption>J2 perturbation vs. unperturbed Keplerian orbit, ISS case over 5 days — nodal regression, apsidal precession, inclination, and altitude.</figcaption>
+        <figcaption>J2 perturbation vs. unperturbed Keplerian orbit, ISS case over 5 days. Nodal regression, apsidal precession, inclination, and altitude.</figcaption>
       </figure>
       <dl class="story">
-        <div class="story-row"><dt>Problem</dt><dd>Model realistic satellite orbits accounting for Earth's oblateness — a numerical-integration and dynamical-systems simulation problem, with orbital mechanics as the application.</dd></div>
+        <div class="story-row"><dt>Problem</dt><dd>Model realistic satellite orbits accounting for Earth's oblateness, a numerical-integration and dynamical-systems simulation problem, with orbital mechanics as the application.</dd></div>
         <div class="story-row"><dt>Approach</dt><dd>Two-body propagator with J2 perturbations and RK45 adaptive integration (~2,100 lines of Python).</dd></div>
         <div class="story-row result"><dt>Results</dt><dd>Validated to 0.4% against analytical nodal regression across ISS, GEO, and Molniya orbits.</dd></div>
         <div class="story-row"><dt>Next</dt><dd>Add drag/SRP perturbations and more orbit regimes.</dd></div>
@@ -414,25 +610,25 @@
 
     <article class="entry">
       <div class="entry-head">
-        <h3>pyFEA <span style="font-style:italic; color:var(--ink-soft); font-size:.85rem">— in progress</span></h3>
+        <h3>pyFEA <span style="font-style:italic; color:var(--ink-soft); font-size:.85rem">(in progress)</span></h3>
         <span class="entry-time">Structures · FEA</span>
       </div>
       <div class="entry-carousel carousel-wide" data-carousel>
         <div class="carousel-track">
           <div class="carousel-slide is-active">
-            <img src="img/pyfea-2.png" alt="pyFEA 3D result viewer — von Mises stress on an L-bracket with load arrow" loading="lazy" class="fallback-img">
+            <img src="img/pyfea-2.png" alt="pyFEA 3D result viewer, von Mises stress on an L-bracket with load arrow" loading="lazy" class="fallback-img">
             <div class="img-placeholder">Image coming soon</div>
           </div>
           <div class="carousel-slide">
-            <img src="img/pyfea-1.png" alt="pyFEA web app — results panel and 3D stress viewer for an L-bracket" loading="lazy" class="fallback-img">
+            <img src="img/pyfea-1.png" alt="pyFEA web app, results panel and 3D stress viewer for an L-bracket" loading="lazy" class="fallback-img">
             <div class="img-placeholder">Image coming soon</div>
           </div>
           <div class="carousel-slide">
-            <img src="img/pyfea-3.png" alt="pyFEA configuration summary — material, mesh estimates, and boundary conditions" loading="lazy" class="fallback-img">
+            <img src="img/pyfea-3.png" alt="pyFEA configuration summary, material, mesh estimates, and boundary conditions" loading="lazy" class="fallback-img">
             <div class="img-placeholder">Image coming soon</div>
           </div>
           <div class="carousel-slide">
-            <img src="img/pyfea-4.png" alt="pyFEA web FEA solver — geometry upload and bounding-box summary" loading="lazy" class="fallback-img">
+            <img src="img/pyfea-4.png" alt="pyFEA web FEA solver, geometry upload and bounding-box summary" loading="lazy" class="fallback-img">
             <div class="img-placeholder">Image coming soon</div>
           </div>
         </div>
@@ -447,8 +643,8 @@
       </div>
       <dl class="story">
         <div class="story-row"><dt>Problem</dt><dd>Understand finite element analysis from first principles instead of treating commercial solvers as black boxes.</dd></div>
-        <div class="story-row"><dt>Approach</dt><dd>3D FEA solver in pure Python — Tet4/Tet10 elements, sparse global stiffness assembly, von Mises stress recovery, gmsh meshing, Streamlit 3D viewer.</dd></div>
-        <div class="story-row"><dt>Tradeoffs</dt><dd>Tet10 is the default element even though Tet4 assembles faster: a linear Tet4 can only represent constant strain per element, so it needs a much finer mesh to resolve a bending gradient, while the quadratic Tet10 captures that gradient at a coarser element count. Validating a cantilever against Euler-Bernoulli theory shows the tradeoff directly — tip deflection matches to within 0.1% on a coarse mesh, but peak root stress still under-predicts by ~11%, because nodal averaging and the Saint-Venant boundary layer at the fully-clamped root both blur the true peak; closing that gap needs local refinement at the cost of a slower solve. Singularity is also checked cheaply rather than exactly: before solving, the assembled stiffness matrix is scanned for any free degree of freedom left with an all-zero row after boundary conditions are applied — a fast, necessary-but-not-sufficient guard against unconstrained rigid-body modes. It catches the common case (a node left completely unconstrained) but not a rigid-body mode coupled across several DOFs, which would need a full rank or eigenvalue check to detect.</dd></div>
+        <div class="story-row"><dt>Approach</dt><dd>3D FEA solver in pure Python. Tet4/Tet10 elements, sparse global stiffness assembly, von Mises stress recovery, gmsh meshing, Streamlit 3D viewer.</dd></div>
+        <div class="story-row"><dt>Tradeoffs</dt><dd>Tet10 is the default element even though Tet4 assembles faster: a linear Tet4 can only represent constant strain per element, so it needs a much finer mesh to resolve a bending gradient, while the quadratic Tet10 captures that gradient at a coarser element count. Validating a cantilever against Euler-Bernoulli theory shows the tradeoff directly: tip deflection matches to within 0.1% on a coarse mesh, but peak root stress still under-predicts by ~11%, because nodal averaging and the Saint-Venant boundary layer at the fully-clamped root both blur the true peak; closing that gap needs local refinement at the cost of a slower solve. Singularity is also checked cheaply rather than exactly: before solving, the assembled stiffness matrix is scanned for any free degree of freedom left with an all-zero row after boundary conditions are applied, a fast, necessary-but-not-sufficient guard against unconstrained rigid-body modes. It catches the common case (a node left completely unconstrained) but not a rigid-body mode coupled across several DOFs, which would need a full rank or eigenvalue check to detect.</dd></div>
         <div class="story-row result"><dt>Results</dt><dd>Cantilever (Tet10, 2,395 elements): tip deflection within 0.1% of the Euler-Bernoulli prediction; root von Mises stress under-predicts by 11.3%, consistent with the boundary-layer effect above. Plate-with-a-hole: FE stress-concentration factor Kt = 2.72 vs. the Pilkey finite-width reference of 2.51 (8.6% error).</dd></div>
         <div class="story-row"><dt>Next</dt><dd>Additional element types and validation cases.</dd></div>
       </dl>
@@ -469,14 +665,14 @@
         <div class="story-row"><dt>Problem</dt><dd>Halt unsafe rocket-launch countdowns automatically, without relying on a human to call the abort.</dd></div>
         <div class="story-row"><dt>Approach</dt><dd>Non-blocking Arduino sensor fusion (proximity + temperature) driving a fail-safe finite-state machine across armed/launch/abort states; any sensor fault, threshold breach, or timeout defaults to an immediate hold. Led a 6-person build team.</dd></div>
         <div class="story-row result"><dt>Results</dt><dd>Real-time abort detection in under 1 second, with fail-safe holds verified across fault, threshold, and timeout cases.</dd></div>
-        <div class="story-row"><dt>Next</dt><dd>None planned — complete for its course/competition scope.</dd></div>
+        <div class="story-row"><dt>Next</dt><dd>None planned. Complete for its course/competition scope.</dd></div>
       </dl>
       <p class="entry-tags">Arduino, C++, Finite-State Machine, Embedded</p>
     </article>
 
     <article class="entry">
       <div class="entry-head">
-        <h3>Autonomous Delivery Robot — Enclosure Redesign</h3>
+        <h3>Autonomous Delivery Robot: Enclosure Redesign</h3>
         <span class="entry-time">Head Engineer &amp; Team Lead</span>
       </div>
       <figure class="entry-figure video-feature">
@@ -491,10 +687,10 @@
         <figcaption>CAD assembly</figcaption>
       </figure>
       <dl class="story">
-        <div class="story-row"><dt>Problem</dt><dd>A sidewalk food-delivery robot couldn't traverse curbs — a key real-world limitation blocking deployment.</dd></div>
-        <div class="story-row"><dt>Approach</dt><dd>As head engineer, set the design direction and personally designed the main body and internal container system — enclosure walls, access doors with handles, removable top/bottom lids, and an insulated payload compartment; raised the chassis and reworked the drive geometry to clear standard curb heights while keeping the payload bay level and secure.</dd></div>
+        <div class="story-row"><dt>Problem</dt><dd>A sidewalk food-delivery robot couldn't traverse curbs, a key real-world limitation blocking deployment.</dd></div>
+        <div class="story-row"><dt>Approach</dt><dd>As head engineer, set the design direction and personally designed the main body and internal container system: enclosure walls, access doors with handles, removable top/bottom lids, and an insulated payload compartment. Raised the chassis and reworked the drive geometry to clear standard curb heights while keeping the payload bay level and secure.</dd></div>
         <div class="story-row result"><dt>Results</dt><dd>Modeled as a fully-constrained multi-part SolidWorks assembly with a complete engineering drawing package.</dd></div>
-        <div class="story-row"><dt>Next</dt><dd>Not specified yet — let me know if this is moving to fabrication/testing.</dd></div>
+        <div class="story-row"><dt>Next</dt><dd>Not specified yet. Let me know if this is moving to fabrication and testing.</dd></div>
       </dl>
       <p class="entry-tags">SolidWorks</p>
     </article>
@@ -560,42 +756,71 @@
     </article>
   </section>
 
-  <!-- ================= LEADERSHIP ================= -->
-  <section id="leadership" class="tab">
-    <h2>Leadership</h2>
+  <!-- ================= RESUME ================= -->
+  <section id="resume" class="tab">
+    <h2>Resume</h2>
+    <p style="text-align:center"><a class="btn btn-primary" href="Rayan_Khan_Resume_2026.pdf" target="_blank">Download Resume (PDF)</a></p>
 
+    <h3 class="sub">Education</h3>
+    <p><b>B.S. Mechanical Engineering</b> (double major, Aerospace Engineering)<br>Rutgers University, New Brunswick</p>
+    <div class="edu-facts">
+      <span><b>3.54</b> GPA</span>
+      <span><b>May 2028</b> Expected</span>
+      <span><b>Dean's List</b></span>
+    </div>
+    <p style="font-size:.95rem; color:var(--ink-soft)">Relevant coursework: Thermodynamics · Fluid Mechanics · Dynamic Systems &amp; Controls</p>
+
+    <h3 class="sub">Experience</h3>
     <article class="entry">
       <div class="entry-head">
-        <h3>Co-Founder · Director of Fundraising &amp; Lead Engineer</h3>
+        <h4>Undergraduate Researcher</h4>
+        <span class="entry-time">Oct 2025 – Present</span>
+      </div>
+      <div class="entry-org">Rutgers University, Low-Reynolds-Number Aerodynamics Lab</div>
+      <p>Built an OpenFOAM/Python CFD pipeline studying airfoil camber effects, validated against XFOIL across 87+ simulations. <a href="#cfd" data-tab="cfd">Full project details →</a></p>
+    </article>
+
+    <h3 class="sub">Leadership</h3>
+    <article class="entry" style="border-top:none; margin-top:0; padding-top:0">
+      <div class="entry-head">
+        <h4>Co-Founder · Director of Fundraising &amp; Lead Engineer</h4>
         <span class="entry-time">Ongoing</span>
       </div>
-      <div class="entry-org">Accessible 4 All — Registered 501(c)(3)</div>
+      <div class="entry-org">Accessible 4 All, registered 501(c)(3)</div>
       <p>Co-founded an engineering nonprofit that designs and modifies adaptive devices for children with disabilities. Raised over $3,500 through donor outreach and led teams of 5 to 20+ people building and modifying devices.</p>
     </article>
 
     <article class="entry">
       <div class="entry-head">
-        <h3>Co-Designer &amp; Fabrication Lead</h3>
+        <h4>Co-Designer &amp; Fabrication Lead</h4>
         <span class="entry-time">Spring 2026</span>
       </div>
-      <div class="entry-org">Accessible 4 All — Adaptive Gait Trainer</div>
-      <p>Co-designed and helped fabricate an adaptive gait trainer for a child with a spinal impairment affecting independent standing and walking — a lightweight PVC frame with 3D-printed structural joints and swivel casters, custom-sized to fit. CAD-modeled the structural joints and helped lead assembly with a small team, delivering a working device that gave the child safe, upright mobility with proper spinal support.</p>
+      <div class="entry-org">Accessible 4 All, Adaptive Gait Trainer</div>
+      <p>Co-designed and helped fabricate an adaptive gait trainer for a child with a spinal impairment affecting independent standing and walking: a lightweight PVC frame with 3D-printed structural joints and swivel casters, custom-sized to fit. CAD-modeled the structural joints and helped lead assembly with a small team, delivering a working device that gave the child safe, upright mobility with proper spinal support.</p>
     </article>
 
     <article class="entry">
       <div class="entry-head">
-        <h3>General Member</h3>
+        <h4>General Member</h4>
         <span class="entry-time">Ongoing</span>
       </div>
-      <div class="entry-org">Rutgers University Airborne — AIAA Design / Build / Fly</div>
+      <div class="entry-org">Rutgers University Airborne, AIAA Design / Build / Fly</div>
       <p>Ran a MATLAB constraint analysis to set mission and flight parameters, modeled airframe components to GD&amp;T standards in SOLIDWORKS, and authored trade studies for the AIAA DBF design report.</p>
     </article>
+
+    <h3 class="sub">Skills</h3>
+    <dl class="skills">
+      <div><dt>Languages</dt><dd>Python, C++, C, MATLAB, Bash</dd></div>
+      <div><dt>Simulation &amp; Analysis</dt><dd>OpenFOAM, ANSYS Fluent, ParaView, XFOIL, gmsh, FEA / FEM, RK45, k-ω SST RANS, blockMesh</dd></div>
+      <div><dt>Engineering Domains</dt><dd>Aerodynamics, CFD, Orbital mechanics, Structures, Control (PID), Sensor fusion, Computer vision, Embedded / real-time</dd></div>
+      <div><dt>Tools &amp; Libraries</dt><dd>NumPy, SciPy, pandas, OpenCV, YOLOv8, Streamlit, SQLite / SQL, pytest, ArduPilot / PX4 SITL, SolidWorks, Fusion 360, Git / GitHub, Linux / WSL2</dd></div>
+    </dl>
   </section>
 
   <!-- ================= CONTACT ================= -->
   <section id="contact" class="tab">
     <h2>Contact</h2>
-    <p style="text-align:center">Open to mechanical, aerospace, and defense internships — research, design, and simulation roles especially.</p>
+    <p style="text-align:center">Open to mechanical, aerospace, and defense internships: research, design, and simulation roles especially.</p>
     <div class="contact-list">
       <div><span class="k">Email</span><span class="v"><a href="mailto:khanrayan2686@gmail.com">khanrayan2686@gmail.com</a></span></div>
       <div><span class="k">GitHub</span><span class="v"><a href="https://github.com/rayankhan2686" target="_blank">github.com/rayankhan2686</a></span></div>
@@ -610,20 +835,26 @@
 </footer>
 
 <script>
-  const TABS = ['home','about','experience','projects','leadership','contact'];
-  const TITLES = {home:'Rayan Khan', about:'About', experience:'Experience',
-                  projects:'Projects', leadership:'Leadership', contact:'Contact'};
+  const TABS = ['home','ahrs','cfd','additional','resume','contact'];
+  const TITLES = {home:'Rayan Khan', ahrs:'Strapdown AHRS', cfd:'CFD Research',
+                  additional:'Additional Projects', resume:'Resume', contact:'Contact'};
 
   function showTab(id){
     if (!TABS.includes(id)) id = 'home';
     document.querySelectorAll('.tab').forEach(el => el.classList.toggle('active', el.id === id));
     document.querySelectorAll('.site-nav a').forEach(a => a.classList.toggle('current', a.dataset.tab === id));
-    document.title = id === 'home' ? 'Rayan Khan — Mechanical Engineering' : `Rayan Khan · ${TITLES[id]}`;
+    document.title = id === 'home' ? 'Rayan Khan | Mechanical Engineering' : `Rayan Khan · ${TITLES[id]}`;
     window.scrollTo(0, 0);
   }
 
   function syncFromHash(){
-    showTab(location.hash.replace('#', '') || 'home');
+    const id = location.hash.replace('#', '');
+    if (id === '' || TABS.includes(id)) {
+      showTab(id || 'home');
+    }
+    // Otherwise the hash targets an in-page anchor (e.g. #flagship-projects)
+    // inside the current tab; let the browser's native scroll handle it
+    // instead of resetting scroll position or switching tabs.
   }
 
   document.querySelectorAll('.site-nav a').forEach(link => {
